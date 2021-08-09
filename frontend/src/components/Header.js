@@ -1,29 +1,31 @@
 import React from "react"
 import {Link, NavLink} from "react-router-dom"
-import {FaPaperPlane} from "react-icons/fa"
+import {FaPaperPlane, FaUserAlt} from "react-icons/fa"
 import {GrMenu} from "react-icons/gr"
 import {useState} from "react"
 
 const Header = () => {
-    const [menuButtom, setMenuButtom] = useState(true)
-    const renderNav = () => {
-        menuButtom ? setMenuButtom(false) : setMenuButtom(true)
+    const [displayState, setDisplayState] = useState(true)
+    const togleDisplay = () => {
+        displayState ? setDisplayState(false) : setDisplayState(true)
     }
-    const renderButtom = () => {
-        menuButtom ? setMenuButtom(false) : setMenuButtom(true)
-    }
-    const displayMenuButtom = menuButtom ? "flex" : "none"
-    const displayNav = menuButtom ? "none" : "flex"
+    const displayMenuButtom = displayState ? "flex" : "none"
+    const displayNav = displayState ? "none" : "flex"
     return (
         <header style={{backgroundImage : "url('/assets/banderas.jpg')"}}>
-            <Link exact to="/">
+            <Link exact={true} to="/">
                 <p><span><FaPaperPlane/></span>MyTinerary</p>
             </Link>
-            <nav onMouseOut={renderButtom} style={{display: displayNav}}>
-                <NavLink exact to="/"><p>Home</p></NavLink>
-                <NavLink to="/Cities"><p>Cities</p></NavLink>
-            </nav>
-            <div onClick={renderNav} style={{display: displayMenuButtom}} className="headerMenuButtom"><GrMenu/></div>
+            <div className="divContainerNav">
+                <nav onMouseOut={togleDisplay} style={{display: displayNav}}>
+                    <NavLink exact={true} to="/"><p>Home</p></NavLink>
+                    <NavLink to="/Cities"><p>Cities</p></NavLink>
+                    <NavLink exact={true} to="/"><p>Sign In</p></NavLink>
+                    <NavLink exact={true} to="/"><p>Sign Out</p></NavLink>
+                </nav>
+                <div onClick={togleDisplay} style={{display: displayMenuButtom}} className="headerMenuButtom"><GrMenu/></div>
+                <div onClick={togleDisplay} style={{display: displayMenuButtom}} className="headerUserIcon"><FaUserAlt/></div>
+            </div>
             <div className="colorGradient"></div>
         </header>
     )

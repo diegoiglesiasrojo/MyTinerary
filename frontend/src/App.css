@@ -21,21 +21,34 @@ header .colorGradient {
     z-index: 0;
 }
 
+header div, header a{
+    z-index: 1;
+}
+
+header .divContainerNav {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
 header nav {
     z-index: 1;
     background: #444444;
     opacity: 0.7;
     flex-direction: column;
-    width: 150px;
+    width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
 }
 
-header a {
-    z-index: 1;
+header nav a p {
+    font-size: 1.2rem;
 }
 
-header p {
+header p, footer p{
     text-decoration: none; /*revisar*/
     color: #EDEDED;
     font-size: 2rem;
@@ -43,7 +56,7 @@ header p {
     margin-bottom: 10px;
 }
 
-header p span {
+header p span, footer p span{
     color: #EDEDED;
     position: relative;
     bottom: -6px;
@@ -51,11 +64,7 @@ header p span {
 }
 
 header .headerMenuButtom{
-    position: absolute;
-    right: 10px;
-    top: 10px;
     z-index: 1;
-    color: #EDEDED; /*revisar*/
     font-size: 2rem;
     background: white;
     height: 50px;
@@ -64,14 +73,203 @@ header .headerMenuButtom{
     border-radius: 25%;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+header .headerUserIcon {
+    z-index: 1;
+    color: #EDEDED;
+    font-size: 3rem;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+
+footer {
+    background: #444444;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer .titleFooter {
+    width: 30%;
+}
+
+footer p {
+    font-size: 0.8rem;
+}
+
+footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    width: 130px;
+}
+
+footer nav p {
+    font-size: 1rem;
+}
+
+footer .socialMediaFooter {
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+}
+
+footer .socialMediaFooter a {
+    width: 35px;
+    height: 35px;
+    margin: 2px 5px;
+}
+
+footer .socialMediaFooter a svg{
+    width: 100%;
+    height: 100%;
+}
+
+footer .socialMediaFooter .facebookFooter {
+    color: #3b5998;
+}
+
+footer .socialMediaFooter .twitterFooter {
+    color: #00acee;
+}
+
+footer .socialMediaFooter .instagramFooter {
+    color: #833AB4;
+}
+
+footer .socialMediaFooter .youtubeFooter {
+    color: #c4302b;
 }
 
 main {
-    background: blue;
+    background: #EDEDED;
     min-height: 75vh;
+    display: flex;
+    flex-direction: column;
 }
 
-footer {
-    background: green;
-    height: 10vh;
+main .welcomeSection {
+    background-position: 50%;
+    background-size: cover;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .welcomeSection .titleArticle {
+    background: #171717;
+    border-radius: 20px;
+    margin: 20px 10px 0px 10px;
+}
+
+main .welcomeSection h2, main .carrouselSection h2 {
+    font-size: 2rem;
+    color: #EDEDED;
+    text-align: center;
+    padding: 10px;
+}
+
+main .welcomeSection .callToActionArticle {
+    width: 200px;
+    height: 40px;
+    background: #DA0037;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+main .welcomeSection a {
+    text-decoration: none;
+    color: #EDEDED;
+    font-size: 1.2rem;
+    padding: 15px;
+}
+
+main .carrouselSection {
+    width: 100%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .carrouselSection .titleArticleCarrousel {
+    background: #171717;
+    border-radius: 20px;
+    position: absolute;
+    top: 75vh;
+    z-index: 3;
+}
+
+main .carrouselSection .slide {
+    display: flex;
+    flex-flow: row !important;
+    flex-wrap: wrap !important;
+    justify-content: space-evenly;
+}
+
+main .carrouselSection .cityContainer {
+    width: 40%;
+    height: 40%;
+    margin: 10px 0px;
+}
+
+main .carrouselSection .cityImage {
+    height: 100%;
+    width: 100%;
+}
+
+main .carrouselSection .cityContainer .legendCity {
+    font-size: 2rem;
+    color: #EDEDED;
+    text-align: center;
+    padding: 10px;
+    background: #444444;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+@media screen and (min-width:480px){
+    footer p, footer nav p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width:767px){
+    header .divContainerNav {
+        width: 60%;
+    }
+    
+    header nav {
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    
+    header nav a p {
+        font-size: 2rem;
+    }
+    
+    footer nav {
+        width: 40%;
+    }
+
+    footer p, footer nav p {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (min-width:950px){
+    footer p, footer nav p {
+        font-size: 1.8rem;
+    }
 }
