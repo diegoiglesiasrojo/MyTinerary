@@ -2,58 +2,25 @@ html * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
-    background-position: 100% 50%;
-    background-size: cover;
-    height: 15vh;
+    height: 10vh;
     display: flex;
     justify-content: space-between;
-}
-
-header .colorGradient {
-    position: absolute;
-    height: 15vh;
-    width: 100%;
-    background: #171717;
-    opacity: 0.8;
-    z-index: 0;
-}
-
-header div, header a{
-    z-index: 1;
-}
-
-header .divContainerNav {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-header nav {
-    z-index: 1;
-    background: #444444;
-    opacity: 0.7;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
     align-items: center;
+    background: #171717;
 }
 
-header nav a p {
-    font-size: 1.2rem;
+header a, footer a {
+    text-decoration: none;
 }
 
 header p, footer p{
-    text-decoration: none; /*revisar*/
     color: #EDEDED;
-    font-size: 2rem;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    font-size: 1.2rem;
+    margin-left: 20px;
 }
 
 header p span, footer p span{
@@ -63,66 +30,72 @@ header p span, footer p span{
     margin-right: 10px;
 }
 
+header .divContainerNav {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
 header .headerMenuButtom{
-    z-index: 1;
-    font-size: 2rem;
+    font-size: 1.3rem;
     background: white;
-    height: 50px;
-    width: 50px;
-    border: 2px solid black;
+    height: 4vh;
+    width: 4vh;
     border-radius: 25%;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
     margin-right: 20px;
     cursor: pointer;
 }
 
 header .headerUserIcon {
-    z-index: 1;
     color: #EDEDED;
-    font-size: 3rem;
+    font-size: 1.5rem;
     margin-right: 20px;
     cursor: pointer;
 }
 
+header nav {
+    background: #444444;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+header nav a p {
+    font-size: 1.3rem;
+    margin-left: 0px;
+}
+
+header nav .active p{
+    color: #DA0037;
+}
 
 footer {
-    background: #444444;
-    height: 10vh;
+    background: #171717;
+    height: 20vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-footer .titleFooter {
-    width: 30%;
-}
-
-footer p {
-    font-size: 0.8rem;
-}
-
-footer nav {
-    display: flex;
-    flex-wrap: wrap;
-    width: 130px;
-}
-
-footer nav p {
-    font-size: 1rem;
-}
-
 footer .socialMediaFooter {
     justify-content: center;
     align-items: center;
-    width: 130px;
+    width: 20vh;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 footer .socialMediaFooter a {
-    width: 35px;
-    height: 35px;
-    margin: 2px 5px;
+    width: 7vh;
+    height: 7vh;
+    margin: 1vh;
 }
 
 footer .socialMediaFooter a svg{
@@ -146,9 +119,30 @@ footer .socialMediaFooter .youtubeFooter {
     color: #c4302b;
 }
 
+footer div {
+    height: 100%;
+    width: calc(100% - 20vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+footer .navFooter {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+footer .navFooter p {
+    font-size: 1.2rem;
+    margin: 0px;
+}
+
 main {
     background: #EDEDED;
-    min-height: 75vh;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
 }
@@ -239,15 +233,6 @@ main .carrouselSection .cityContainer .legendCity {
 }
 
 @media screen and (min-width:480px){
-    footer p, footer nav p {
-        font-size: 1rem;
-    }
-}
-
-@media screen and (min-width:767px){
-    header .divContainerNav {
-        width: 60%;
-    }
     
     header nav {
         flex-direction: row;
@@ -256,20 +241,31 @@ main .carrouselSection .cityContainer .legendCity {
     }
     
     header nav a p {
-        font-size: 2rem;
-    }
-    
-    footer nav {
-        width: 40%;
+        font-size: 1.8rem;
+    }   
+
+    header .divContainerNav {
+        width: 50%;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;    
     }
 
-    footer p, footer nav p {
-        font-size: 1.4rem;
+    header .headerMenuButtom{
+        font-size: 2rem;
+        height: 8vh;
+        width: 8vh;
     }
+    
+    header .headerUserIcon {
+        color: #EDEDED;
+        font-size: 3rem;
+    }    
+
+}
+
+@media screen and (min-width:767px){
 }
 
 @media screen and (min-width:950px){
-    footer p, footer nav p {
-        font-size: 1.8rem;
-    }
 }

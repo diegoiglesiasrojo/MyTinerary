@@ -6,16 +6,18 @@ import {ImFacebook2} from "react-icons/im"
 const Footer = () => {
     return (
         <footer>
-            <Link exact={true} to="/" className="titleFooter">
-                <p><span><FaPaperPlane/></span>MyTinerary®.</p>
-                <p>All right reserverd</p>
-            </Link>
-            <nav>
-                <Link exact={true} to="/"><p>Home</p></Link>
-                <Link to="/Cities"><p>Cities</p></Link>
-                <Link exact={true} to="/"><p>Sign In</p></Link>
-                <Link exact={true} to="/"><p>Sign Out</p></Link>
-            </nav>
+            <div>
+                <Link exact to="/">
+                    <p><span><FaPaperPlane/></span>MyTinerary</p>
+                    <p>in Europe</p>
+                </Link>
+                <nav className="navFooter">
+                    <Link exact to="/"><p>Home</p></Link>
+                    <Link to="/Cities"><p>Cities</p></Link>
+                    <Link exact to="/"><p>Log In</p></Link>
+                    <Link exact to="/"><p>Sign Up</p></Link>
+                </nav>
+            </div>
             <nav className="socialMediaFooter">
                 <a href="https://www.facebook.com/" target="_blank" className="facebookFooter" rel="noreferrer"><ImFacebook2/></a>
                 <a href="https://twitter.com/" target="_blank" className="twitterFooter" rel="noreferrer"><FaTwitterSquare/></a>

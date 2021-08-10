@@ -5,28 +5,38 @@ import {GrMenu} from "react-icons/gr"
 import {useState} from "react"
 
 const Header = () => {
-    const [displayState, setDisplayState] = useState(true)
-    const togleDisplay = () => {
-        displayState ? setDisplayState(false) : setDisplayState(true)
+    const [displayNavMenu, setDisplayNavMenu] = useState(false)
+    const [displayNavUser, setDisplayNavUser] = useState(false)
+    const [displayMenuButtom, setDisplayMenuButtom] = useState(true)
+
+    const togleDisplayMenu = () => {
+        setDisplayMenuButtom(!displayMenuButtom)
+        setDisplayNavMenu(!displayNavMenu)
     }
-    const displayMenuButtom = displayState ? "flex" : "none"
-    const displayNav = displayState ? "none" : "flex"
+
+    const togleDisplayUser = () => {
+        setDisplayMenuButtom(!displayMenuButtom)
+        setDisplayNavUser(!displayNavUser)
+    }
+
     return (
-        <header style={{backgroundImage : "url('/assets/banderas.jpg')"}}>
-            <Link exact={true} to="/">
+        <header>
+            <Link exact to="/">
                 <p><span><FaPaperPlane/></span>MyTinerary</p>
+                <p>in Europe</p>
             </Link>
             <div className="divContainerNav">
-                <nav onMouseOut={togleDisplay} style={{display: displayNav}}>
-                    <NavLink exact={true} to="/"><p>Home</p></NavLink>
+                <nav onMouseOut={togleDisplayMenu} style={{display: displayNavMenu ? "flex":"none"}}>
+                    <NavLink exact to="/"><p>Home</p></NavLink>
                     <NavLink to="/Cities"><p>Cities</p></NavLink>
-                    <NavLink exact={true} to="/"><p>Sign In</p></NavLink>
-                    <NavLink exact={true} to="/"><p>Sign Out</p></NavLink>
                 </nav>
-                <div onClick={togleDisplay} style={{display: displayMenuButtom}} className="headerMenuButtom"><GrMenu/></div>
-                <div onClick={togleDisplay} style={{display: displayMenuButtom}} className="headerUserIcon"><FaUserAlt/></div>
+                <nav onMouseOut={togleDisplayUser} style={{display: displayNavUser ? "flex":"none"}}>
+                    <Link exact to="/"><p>Log In</p></Link>
+                    <Link exact to="/"><p>Sign Up</p></Link>
+                </nav>
+                <div onClick={togleDisplayMenu} style={{display: displayMenuButtom ? "flex":"none"}} className="headerMenuButtom"><GrMenu/></div>
+                <div onClick={togleDisplayUser} style={{display: displayMenuButtom ? "flex":"none"}} className="headerUserIcon"><FaUserAlt/></div>
             </div>
-            <div className="colorGradient"></div>
         </header>
     )
 }

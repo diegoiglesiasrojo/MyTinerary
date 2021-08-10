@@ -30,17 +30,17 @@ const listCities = [
             cityImage: "./assets/carrousel/malaga.jpg"
         },
         {
-            cityName: "Mar del Plata",
-            cityImage: "./assets/carrousel/mar-del-plata.jpg"
+            cityName: "Lisbon",
+            cityImage: "./assets/carrousel/lisbon.jpg"
         },
         {
-            cityName: "Mexico City",
-            cityImage: "./assets/carrousel/mexico-city.jpg"
+            cityName: "Brussels",
+            cityImage: "./assets/carrousel/brussels.jpg"
         }
     ], [
         {
-            cityName: "Panama city",
-            cityImage: "./assets/carrousel/panama-city.jpg"
+            cityName: "Hamburg",
+            cityImage: "./assets/carrousel/hamburg.jpg"
         },
         {
             cityName: "Paris",
@@ -51,8 +51,8 @@ const listCities = [
             cityImage: "./assets/carrousel/rome.jpg"
         },
         {
-            cityName: "Venezia",
-            cityImage: "./assets/carrousel/venezia.jpg"
+            cityName: "Venice",
+            cityImage: "./assets/carrousel/venice.jpg"
         }
     ]
 ]
