@@ -84,6 +84,15 @@ footer {
     justify-content: space-between;
 }
 
+footer div {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .logoFooter {
+    align-self: flex-start;
+}
+
 footer .socialMediaFooter {
     justify-content: center;
     align-items: center;
@@ -265,6 +274,20 @@ main .carrouselSection .cityContainer .legendCity {
 }
 
 @media screen and (min-width:767px){
+    footer div {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    footer .logoFooter {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+    }
+
+    footer .navFooter a p {
+        font-size: 2rem;
+    }
 }
 
 @media screen and (min-width:950px){

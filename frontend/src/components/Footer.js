@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <footer>
             <div>
-                <Link exact to="/">
+                <Link exact to="/" className="logoFooter">
                     <p><span><FaPaperPlane/></span>MyTinerary</p>
                     <p>in Europe</p>
                 </Link>
