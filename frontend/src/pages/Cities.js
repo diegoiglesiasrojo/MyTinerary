@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 
 const listCities = [
     {
@@ -52,6 +52,10 @@ const listCities = [
 ]
 
 const Cities = () => {
+    useEffect(() => {
+        window.scroll(0,0)
+    }, [])
+
     const renderCities = listCities.map(city => {
         return (
             <article key={city.cityName} style={{backgroundImage : `url(${city.cityImage})`}}>

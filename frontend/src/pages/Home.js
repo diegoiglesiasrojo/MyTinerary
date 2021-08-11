@@ -1,8 +1,12 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {Link} from "react-router-dom"
 import Carrousel from "../components/Carrousel.js"
 
 const Home = () => {
+    useEffect(() => {
+        window.scroll(0,0)
+    })
+
     return (
         <main>
             <section className="welcomeSection" style={{backgroundImage : "url('./assets/berlinBackground.jpg')"}}>
