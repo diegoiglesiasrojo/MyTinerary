@@ -159,7 +159,7 @@ main {
 main .welcomeSection {
     background-position: 50%;
     background-size: cover;
-    height: 60vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,33 +168,31 @@ main .welcomeSection {
 
 main .welcomeSection .titleArticle {
     background: #171717;
+    opacity: 0.8;
     border-radius: 20px;
     margin: 20px 10px 0px 10px;
 }
 
-main .welcomeSection h2, main .carrouselSection h2 {
-    font-size: 2rem;
+main .welcomeSection .titleArticle h2, main .carrouselSection h2 {
+    font-size: 1rem;
     color: #EDEDED;
     text-align: center;
     padding: 10px;
 }
 
 main .welcomeSection .callToActionArticle {
-    width: 200px;
-    height: 40px;
     background: #DA0037;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 20px;
     margin-bottom: 20px;
 }
 
-main .welcomeSection a {
+main .welcomeSection .callToActionArticle a {
     text-decoration: none;
     color: #EDEDED;
-    font-size: 1.2rem;
-    padding: 15px;
+}
+
+main .welcomeSection .callToActionArticle a p {
+    padding: 10px;
 }
 
 main .carrouselSection {
@@ -271,6 +269,14 @@ main .carrouselSection .cityContainer .legendCity {
         font-size: 3rem;
     }    
 
+    main .welcomeSection .titleArticle {
+        width: 80%;
+        margin-top: 20px;
+    }
+    
+    main .welcomeSection .titleArticle h2, main .carrouselSection h2 {
+        font-size: 1.5rem;
+    }    
 }
 
 @media screen and (min-width:767px){
