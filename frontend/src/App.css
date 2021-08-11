@@ -150,7 +150,7 @@ footer .navFooter p {
 }
 
 main {
-    background: #EDEDED;
+    background: #444444;
     min-height: 70vh;
     display: flex;
     flex-direction: column;
@@ -230,6 +230,8 @@ main .carrouselSection .slide .cityContainer {
     align-items: center;
     justify-content: center;
     margin: 10px 0px;
+    border: 10px solid #171717;
+    border-radius: 20px;
 }
 
 main .carrouselSection .cityContainer .legendCity {
@@ -241,7 +243,91 @@ main .carrouselSection .cityContainer .legendCity {
     border-radius: 20px;
 }
 
+main .carrouselSection .cityContainer:hover {
+    transform: scale(1.1);
+    transition-duration: 0.7s;
+}
+
 main .carrouselSection .cityContainer:hover .legendCity {
+    opacity: 0;
+    transition-duration: 0.7s;
+}
+
+.citiesMain {
+    align-items: center;
+}
+
+main .citiesIntroductionSection {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+main .citiesIntroductionSection h2 {
+    font-size: 1rem;
+    color: #EDEDED;
+    background: #171717;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+main .citiesIntroductionSection fieldset {
+    background: #171717;
+    border: 5px solid #171717;
+    border-radius: 10px;
+    display: flex;
+    padding: 5px;
+    margin: 0px 10px;
+}
+
+main .citiesIntroductionSection fieldset label{
+    font-size: 0.8rem;
+    color: #EDEDED;
+    margin-right: 10px;
+}
+
+main .citiesIntroductionSection fieldset input{
+    background: #444444;
+    color: #EDEDED;
+}
+
+main .citiesRenderedSection {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+main .citiesRenderedSection article {
+    background-position: 50%;
+    background-size: cover;
+    width: 100%;
+    height: 250px;
+    margin: 10px 0px;
+    border: 10px solid #171717;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+main .citiesRenderedSection article p {
+    font-size: 1.5rem;
+    color: #EDEDED;
+    padding: 10px;
+    background: #171717;
+    opacity: 0.7;
+    border-radius: 20px;
+}
+
+main .citiesRenderedSection article:hover {
+    transform: scale(1.1);
+    transition-duration: 0.7s;
+}
+
+main .citiesRenderedSection article:hover p {
     opacity: 0;
     transition-duration: 0.7s;
 }
@@ -284,6 +370,14 @@ main .carrouselSection .cityContainer:hover .legendCity {
     main .welcomeSection .titleArticle h2, main .carrouselSection h2 {
         font-size: 1.5rem;
     }    
+
+    main .citiesIntroductionSection h2 {
+        font-size: 1.5rem;
+    }
+
+    main .citiesIntroductionSection fieldset label{
+        font-size: 1.2rem;
+    }    
 }
 
 @media screen and (min-width:767px){
@@ -309,10 +403,36 @@ main .carrouselSection .cityContainer:hover .legendCity {
     main .carrouselSection .cityContainer {
         width: 40% !important;
     }    
+
+    main .citiesIntroductionSection h2 {
+        font-size: 2rem;
+    }
+
+    main .citiesIntroductionSection fieldset label{
+        font-size: 1.8rem;
+    }    
+
+    main .citiesRenderedSection {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    
+    main .citiesRenderedSection article {
+        width: 40%;
+    }
 }
 
 @media screen and (min-width:950px){
     main .carrouselSection h2 {
         font-size: 2rem;
     }    
+
+    main .citiesIntroductionSection h2 {
+        font-size: 2.5rem;
+    }
+
+    main .citiesIntroductionSection fieldset label{
+        font-size: 2.2rem;
+    }
 }

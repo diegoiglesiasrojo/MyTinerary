@@ -13,7 +13,7 @@ const Footer = () => {
                 </Link>
                 <nav className="navFooter">
                     <Link exact to="/"><p>Home</p></Link>
-                    <Link to="/Cities"><p>Cities</p></Link>
+                    <Link to="/cities"><p>Cities</p></Link>
                     <Link exact to="/"><p>Log In</p></Link>
                     <Link exact to="/"><p>Sign Up</p></Link>
                 </nav>

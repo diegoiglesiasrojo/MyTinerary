@@ -28,7 +28,7 @@ const Header = () => {
             <div className="divContainerNav">
                 <nav onMouseOut={togleDisplayMenu} style={{display: displayNavMenu ? "flex":"none"}}>
                     <NavLink exact to="/"><p>Home</p></NavLink>
-                    <NavLink to="/Cities"><p>Cities</p></NavLink>
+                    <NavLink to="/cities"><p>Cities</p></NavLink>
                 </nav>
                 <nav onMouseOut={togleDisplayUser} style={{display: displayNavUser ? "flex":"none"}}>
                     <Link exact to="/"><p>Log In</p></Link>
