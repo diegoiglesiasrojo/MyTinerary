@@ -62,7 +62,7 @@ export default class Carrousel extends Component {
 
     render() {
         return (
-            <Carousel autoPlay infiniteLoop showThumbs={false}>
+            <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
                 {
                     listCities.map((slide, index) => {
                         return (
@@ -70,8 +70,7 @@ export default class Carrousel extends Component {
                                 {
                                     slide.map(city => {
                                         return (
-                                            <div className="cityContainer" key={city.cityName}>
-                                                <img src={city.cityImage} className="cityImage" alt={city.cityName}/>
+                                            <div className="cityContainer" key={city.cityName} style={{backgroundImage : `url(${city.cityImage})`}}>
                                                 <p className="legendCity">{city.cityName}</p>
                                             </div>
                                         )
