@@ -1,72 +1,13 @@
 import React, {useEffect, useState} from "react"
 import {Link} from "react-router-dom"
-
-const listCities = [
-    {
-        id: 0,
-        cityName: "amsterdam",
-        cityImage: "./assets/carrousel/amsterdam.jpg"
-    },
-    {
-        id: 1,
-        cityName: "barcelona",
-        cityImage: "./assets/carrousel/barcelona.jpg"
-    },
-    {
-        id: 2,
-        cityName: "berlin",
-        cityImage: "./assets/carrousel/berlin.jpg"
-    },
-    {
-        id: 3,
-        cityName: "london",
-        cityImage: "./assets/carrousel/london.jpg"
-    },
-    {
-        id: 4,
-        cityName: "madrid",
-        cityImage: "./assets/carrousel/madrid.jpg"
-    },
-    {
-        id: 5,
-        cityName: "malaga",
-        cityImage: "./assets/carrousel/malaga.jpg"
-    },
-    {
-        id: 6,
-        cityName: "lisbon",
-        cityImage: "./assets/carrousel/lisbon.jpg"
-    },
-    {
-        id: 7,
-        cityName: "brussels",
-        cityImage: "./assets/carrousel/brussels.jpg"
-    },
-    {
-        id: 8,
-        cityName: "hamburg",
-        cityImage: "./assets/carrousel/hamburg.jpg"
-    },
-    {
-        id: 9,
-        cityName: "paris",
-        cityImage: "./assets/carrousel/paris.jpg"
-    },
-    {
-        id: 10,
-        cityName: "rome",
-        cityImage: "./assets/carrousel/rome.jpg"
-    },
-    {
-        id: 11,
-        cityName: "venice",
-        cityImage: "./assets/carrousel/venice.jpg"
-    }
-]
+import axios from "axios"
 
 const Cities = () => {
+    const [listCities, setListCities] = useState([])
+
     useEffect(() => {
         window.scroll(0,0)
+        axios.get("http://localhost:4000/api/cities").then(res => setListCities(res.data.response))
     }, [])
 
     const [citySearched, setCitySearched] = useState('')
@@ -89,7 +30,7 @@ const Cities = () => {
 
     const renderCities = filteredCities.map(city => {
         return (
-            <Link to={`/city/${city.id}`} key={city.cityName}>
+            <Link to={`/city/${city._id}`} key={city.cityName}>
                 <article className="citiesRenderCities" style={{backgroundImage : `url(${city.cityImage})`}} >
                     <p>{city.cityName}</p>
                 </article>

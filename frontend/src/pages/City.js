@@ -1,80 +1,22 @@
-import React, {useEffect} from "react"
+import React, {useState, useEffect, useRef} from "react"
 import {Link} from "react-router-dom"
 import {FaTools} from "react-icons/fa"
-
-const listCities = [
-    {
-        id: 0,
-        cityName: "Amsterdam",
-        cityImage: "/assets/carrousel/amsterdam.jpg"
-    },
-    {
-        id: 1,
-        cityName: "Barcelona",
-        cityImage: "/assets/carrousel/barcelona.jpg"
-    },
-    {
-        id: 2,
-        cityName: "Berlin",
-        cityImage: "/assets/carrousel/berlin.jpg"
-    },
-    {
-        id: 3,
-        cityName: "London",
-        cityImage: "/assets/carrousel/london.jpg"
-    },
-    {
-        id: 4,
-        cityName: "Madrid",
-        cityImage: "/assets/carrousel/madrid.jpg"
-    },
-    {
-        id: 5,
-        cityName: "Malaga",
-        cityImage: "/assets/carrousel/malaga.jpg"
-    },
-    {
-        id: 6,
-        cityName: "Lisbon",
-        cityImage: "/assets/carrousel/lisbon.jpg"
-    },
-    {
-        id: 7,
-        cityName: "Brussels",
-        cityImage: "/assets/carrousel/brussels.jpg"
-    },
-    {
-        id: 8,
-        cityName: "Hamburg",
-        cityImage: "/assets/carrousel/hamburg.jpg"
-    },
-    {
-        id: 9,
-        cityName: "Paris",
-        cityImage: "/assets/carrousel/paris.jpg"
-    },
-    {
-        id: 10,
-        cityName: "Rome",
-        cityImage: "/assets/carrousel/rome.jpg"
-    },
-    {
-        id: 11,
-        cityName: "Venice",
-        cityImage: "/assets/carrousel/venice.jpg"
-    }
-]
+import axios from "axios"
 
 const City = (props) => {
+    const [citySelected, setCitySelected] = useState({})
+    let idToGet = useRef()
+    idToGet = props.match.params.id
+
     useEffect(() => {
         window.scroll(0,0)
+        axios.get(`http://localhost:4000/api/cities/${idToGet}`).then(res => setCitySelected(res.data.response))
     }, [])
 
-    const citySelected = listCities.find(city => parseInt(props.match.params.id) === city.id)
     return (
         <main className="cityMain">
             <section className="cityIntroductionSection" style={{backgroundImage : `url(${citySelected.cityImage})`}} >
-                <h1>{citySelected.cityName}</h1>
+                {citySelected.cityName === undefined ? <h1>Loading...</h1> : <h1>{citySelected.cityName}</h1>}
             </section>
             <section className="cityItinerarySection">
                 <p><span><FaTools/></span>Under construction<span><FaTools/></span></p>
