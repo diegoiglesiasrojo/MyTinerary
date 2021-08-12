@@ -309,7 +309,7 @@ main .citiesRenderedSection a {
     text-decoration: none;
 }
 
-main .citiesRenderedSection article {
+main .citiesRenderedSection .citiesRenderCities {
     background-position: 50%;
     background-size: cover;
     width: 100%;
@@ -323,7 +323,7 @@ main .citiesRenderedSection article {
     cursor: pointer;
 }
 
-main .citiesRenderedSection article p {
+main .citiesRenderedSection .citiesRenderCities p {
     font-size: 1.5rem;
     color: #EDEDED;
     padding: 10px;
@@ -332,14 +332,31 @@ main .citiesRenderedSection article p {
     border-radius: 20px;
 }
 
-main .citiesRenderedSection article:hover {
+main .citiesRenderedSection .citiesRenderCities:hover {
     transform: scale(1.1);
     transition-duration: 0.7s;
 }
 
-main .citiesRenderedSection article:hover p {
+main .citiesRenderedSection .citiesRenderCities:hover p {
     opacity: 0;
     transition-duration: 0.7s;
+}
+
+main .citiesRenderedSection .citiesNoCitiesToRender {
+    background: #EDEDED;
+    color: #171717;
+    width: 100%;
+    height: 100px;
+    margin: 10px 0px;
+    border: 10px solid #171717;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .citiesRenderedSection .citiesNoCitiesToRender p {
+    font-size: 1.2rem;
 }
 
 .cityMain {
@@ -395,7 +412,6 @@ main .cityReturnSection {
     background: #DA0037;
     border-radius: 20px;
     margin: 40px 0px;
-
 }
 
 main .cityReturnSection a {
@@ -495,6 +511,10 @@ main .cityReturnSection a p {
     }
     
     main .citiesRenderedSection a {
+        width: 40%;
+    }
+
+    main .citiesRenderedSection .citiesNoCitiesToRender {
         width: 40%;
     }
 

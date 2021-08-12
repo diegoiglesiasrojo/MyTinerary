@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {Link} from "react-router-dom"
 import {FaTools} from "react-icons/fa"
 
@@ -66,6 +66,10 @@ const listCities = [
 ]
 
 const City = (props) => {
+    useEffect(() => {
+        window.scroll(0,0)
+    }, [])
+
     const citySelected = listCities.find(city => parseInt(props.match.params.id) === city.id)
     return (
         <main className="cityMain">

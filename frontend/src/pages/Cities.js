@@ -1,65 +1,65 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import {Link} from "react-router-dom"
 
 const listCities = [
     {
         id: 0,
-        cityName: "Amsterdam",
+        cityName: "amsterdam",
         cityImage: "./assets/carrousel/amsterdam.jpg"
     },
     {
         id: 1,
-        cityName: "Barcelona",
+        cityName: "barcelona",
         cityImage: "./assets/carrousel/barcelona.jpg"
     },
     {
         id: 2,
-        cityName: "Berlin",
+        cityName: "berlin",
         cityImage: "./assets/carrousel/berlin.jpg"
     },
     {
         id: 3,
-        cityName: "London",
+        cityName: "london",
         cityImage: "./assets/carrousel/london.jpg"
     },
     {
         id: 4,
-        cityName: "Madrid",
+        cityName: "madrid",
         cityImage: "./assets/carrousel/madrid.jpg"
     },
     {
         id: 5,
-        cityName: "Malaga",
+        cityName: "malaga",
         cityImage: "./assets/carrousel/malaga.jpg"
     },
     {
         id: 6,
-        cityName: "Lisbon",
+        cityName: "lisbon",
         cityImage: "./assets/carrousel/lisbon.jpg"
     },
     {
         id: 7,
-        cityName: "Brussels",
+        cityName: "brussels",
         cityImage: "./assets/carrousel/brussels.jpg"
     },
     {
         id: 8,
-        cityName: "Hamburg",
+        cityName: "hamburg",
         cityImage: "./assets/carrousel/hamburg.jpg"
     },
     {
         id: 9,
-        cityName: "Paris",
+        cityName: "paris",
         cityImage: "./assets/carrousel/paris.jpg"
     },
     {
         id: 10,
-        cityName: "Rome",
+        cityName: "rome",
         cityImage: "./assets/carrousel/rome.jpg"
     },
     {
         id: 11,
-        cityName: "Venice",
+        cityName: "venice",
         cityImage: "./assets/carrousel/venice.jpg"
     }
 ]
@@ -69,15 +69,35 @@ const Cities = () => {
         window.scroll(0,0)
     }, [])
 
-    const renderCities = listCities.map(city => {
+    const [citySearched, setCitySearched] = useState('')
+
+    const inputHandler = (e) => {
+        setCitySearched(e.target.value.trim().toLowerCase())
+    }
+    
+    const filteredCities = listCities.filter(city => {
+        const arrayCityName = city.cityName.split("")
+        const arrayCitySearched = citySearched.split("")
+        let count = 0
+        arrayCitySearched.forEach((character, index) => {
+            if (character === arrayCityName[index]) {
+                count = count + 1
+            }
+        })
+        return(count === arrayCitySearched.length || citySearched === '')
+    })
+
+    const renderCities = filteredCities.map(city => {
         return (
             <Link to={`/city/${city.id}`} key={city.cityName}>
-                <article style={{backgroundImage : `url(${city.cityImage})`}} >
+                <article className="citiesRenderCities" style={{backgroundImage : `url(${city.cityImage})`}} >
                     <p>{city.cityName}</p>
                 </article>
             </Link>
         )
     })
+
+    const noCitiesToRender = <article className="citiesNoCitiesToRender"><p>no cities to render</p></article>
 
     return (
         <main className="citiesMain">
@@ -86,11 +106,11 @@ const Cities = () => {
                 <h2>Your next destination awaits you</h2>
                 <fieldset>
                     <label htmlFor="cityInput">Search your dream's city:</label>
-                    <input type="text" id="cityInput" name="cityInput"/>
+                    <input type="text" id="cityInput" name="cityInput" onChange={inputHandler}/>
                 </fieldset>
             </section>
             <section className="citiesRenderedSection">
-                {renderCities}
+                {filteredCities.length === 0 ? noCitiesToRender : renderCities}
             </section>
         </main>
     )
