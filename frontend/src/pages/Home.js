@@ -19,7 +19,7 @@ const Home = () => {
             </section>
             <section className="carrouselSection">
                 <article className="titleArticleCarrousel">
-                    <h2>Popular european MYtineraries</h2>
+                    <h2>Popular European MyTineraries</h2>
                 </article>
                 <Carrousel/>
             </section>
