@@ -4,20 +4,44 @@ import axios from "axios"
 
 const Cities = () => {
     const [listCities, setListCities] = useState([])
+    const [connectionWithAPI, setConnectionWithAPI] = useState("connected")
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         window.scroll(0,0)
-        axios.get("http://localhost:4000/api/cities").then(res => setListCities(res.data.response))
+        const getCities = async () => {
+            try {
+                await axios.get("http://localhost:4000/api/cities")
+                .then(res => {
+                    if (res.data.success) {
+                        setListCities(res.data.response)
+                    } else {
+                        throw new Error ("Fail to connect with the database")
+                    }
+                })
+            }
+            catch (error){
+                setConnectionWithAPI(
+                    error.message.includes("database") ?
+                    error.message :
+                    "Fail to connect with the API"
+                )
+                console.error(error)
+            }
+            finally {
+                setLoading(false)
+            }
+        }
+        getCities()
     }, [])
 
     const [citySearched, setCitySearched] = useState('')
-
     const inputHandler = (e) => {
         setCitySearched(e.target.value.trim().toLowerCase())
     }
     
     const filteredCities = listCities.filter(city => {
-        const arrayCityName = city.cityName.split("")
+        const arrayCityName = city.cityName.toLowerCase().split("")
         const arrayCitySearched = citySearched.split("")
         let count = 0
         arrayCitySearched.forEach((character, index) => {
@@ -30,7 +54,7 @@ const Cities = () => {
 
     const renderCities = filteredCities.map(city => {
         return (
-            <Link to={`/city/${city._id}`} key={city.cityName}>
+            <Link to={`/city/${city._id}`} key={city._id}>
                 <article className="citiesRenderCities" style={{backgroundImage : `url(${city.cityImage})`}} >
                     <p>{city.cityName}</p>
                 </article>
@@ -38,7 +62,11 @@ const Cities = () => {
         )
     })
 
-    const noCitiesToRender = <article className="citiesNoCitiesToRender"><p>no cities to render</p></article>
+    const noCities = (text) => {
+        return(
+            <article className="citiesNoCitiesToRender"><p>{text}</p></article>
+        )
+    }
 
     return (
         <main className="citiesMain">
@@ -51,10 +79,18 @@ const Cities = () => {
                 </fieldset>
             </section>
             <section className="citiesRenderedSection">
-                {filteredCities.length === 0 ? noCitiesToRender : renderCities}
+                {loading ?
+                    noCities("Loading...") :
+                    (connectionWithAPI === "connected" ?
+                        (filteredCities.length === 0 ?
+                            noCities("No cities to render") :
+                            renderCities
+                        ) :
+                        noCities(connectionWithAPI)
+                    )
+                }
             </section>
         </main>
     )
 }
-
 export default Cities
