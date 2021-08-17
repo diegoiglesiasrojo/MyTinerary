@@ -21,6 +21,14 @@ const controllers = {
         const cityToPost = new City({
             cityName: req.body.cityName,
             cityImage: req.body.cityImage,
+            cityCountry: req.body.cityCountry,
+            cityLanguage: req.body.cityLanguage,
+            cityMoney: req.body.cityMoney,
+            cityFlag: req.body.cityFlag,
+            cityAirport: req.body.cityAirport,
+            cityPort: req.body.cityPort,
+            cityTrainStation: req.body.cityTrainStation,
+            cityUnderground: req.body.cityUnderground      
         })
         cityToPost.save()
         .then(() => res.json({ success: true }))
