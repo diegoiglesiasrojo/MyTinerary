@@ -21,7 +21,7 @@ const Header = () => {
 
     return (
         <header>
-            <Link exact to="/">
+            <Link to="/">
                 <p><span><FaPaperPlane/></span>MyTinerary</p>
                 <p>in Europe</p>
             </Link>
@@ -31,8 +31,8 @@ const Header = () => {
                     <NavLink to="/cities"><p>Cities</p></NavLink>
                 </nav>
                 <nav onMouseOut={togleDisplayUser} style={{display: displayNavUser ? "flex":"none"}}>
-                    <Link exact to="/"><p>Log In</p></Link>
-                    <Link exact to="/"><p>Sign Up</p></Link>
+                    <Link to="/"><p>Log In</p></Link>
+                    <Link to="/"><p>Sign Up</p></Link>
                 </nav>
                 <div onClick={togleDisplayMenu} style={{display: displayMenuButtom ? "flex":"none"}} className="headerMenuButtom"><GrMenu/></div>
                 <div onClick={togleDisplayUser} style={{display: displayMenuButtom ? "flex":"none"}} className="headerUserIcon"><FaUserAlt/></div>

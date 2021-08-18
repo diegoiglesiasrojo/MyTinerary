@@ -7,15 +7,15 @@ const Footer = () => {
     return (
         <footer>
             <div>
-                <Link exact to="/" className="logoFooter">
+                <Link to="/" className="logoFooter">
                     <p><span><FaPaperPlane/></span>MyTinerary</p>
                     <p>in Europe</p>
                 </Link>
                 <nav className="navFooter">
-                    <Link exact to="/"><p>Home</p></Link>
+                    <Link to="/"><p>Home</p></Link>
                     <Link to="/cities"><p>Cities</p></Link>
-                    <Link exact to="/"><p>Log In</p></Link>
-                    <Link exact to="/"><p>Sign Up</p></Link>
+                    <Link to="/"><p>Log In</p></Link>
+                    <Link to="/"><p>Sign Up</p></Link>
                 </nav>
             </div>
             <nav className="socialMediaFooter">
