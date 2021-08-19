@@ -89,11 +89,6 @@ footer {
     justify-content: space-between;
 }
 
-footer div {
-    display: flex;
-    flex-direction: column;
-}
-
 footer .logoFooter {
     align-self: flex-start;
 }
@@ -385,27 +380,86 @@ main .cityIntroductionSection h1 {
     border-radius: 20px;
 }
 
-main .cityIntroductionSection:hover {
-    transform: scale(1.1);
-    transition-duration: 0.7s;
-}
-
-main .cityIntroductionSection:hover h1 {
-    opacity: 0;
-    transition-duration: 0.7s;
-}
-
 main .cityItinerarySection {
     color: #171717;
     background: #EDEDED;
     border: 10px solid #171717;
     border-radius: 20px;
     padding: 10px;
-    margin-top: 40px;
+    margin-top: 20px;
+    width: 80%;
 }
 
-main .cityItinerarySection p span {
-    margin: 0px 10px;
+main .cityItinerarySection article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .cityItinerarySection article p {
+    text-align: justify;
+}
+
+main .cityItinerarySection article .cityItinenaryDivUser {
+    width: 80%;
+    border: 3px solid #171717;
+    border-radius: 20px;
+    padding: 2px;
+    margin: 4px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+main .cityItinerarySection article .cityItinenaryDivUser .cityItinenaryDivImage {
+    width: 40px;
+    height: 40px;
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+main .cityItinerarySection article .cityItinenaryDivUser .cityItinenaryDivPerson {
+    display: flex;
+    flex-direction: column;
+}
+
+main .cityItinerarySection article .cityItineraryDivDuration,
+main .cityItinerarySection article .cityItineraryDivPrice,
+main .cityItinerarySection article .cityItineraryDivLikes,
+main .cityItinerarySection article .cityItineraryDivHashtags {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 4px 0px;
+}
+
+main .cityItinerarySection article .cityItineraryDivHashtags p {
+    margin: 4px;
+}
+
+main .cityItinerarySection aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .cityItinerarySection aside .cityItineraryDivDropDown {
+    background: #DA0037;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+main .cityItinerarySection aside .cityItineraryDivDropDownContainer {
+    min-height: 200px;
+    width: 100%;
+    border: 3px solid #171717;
+    border-radius: 20px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 main .cityReturnSection {
@@ -482,6 +536,10 @@ main .cityReturnSection a p {
         display: flex;
         flex-direction: column;
         align-self: center;
+    }
+
+    footer .logoFooter p {
+        display: flex;
     }
 
     footer .navFooter a p {

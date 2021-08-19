@@ -80,14 +80,13 @@ const Cities = () => {
             </section>
             <section className="citiesRenderedSection">
                 {loading ?
-                    noCities("Loading...") :
-                    (connectionWithAPI === "connected" ?
-                        (filteredCities.length === 0 ?
-                            noCities("No cities to render") :
-                            renderCities
-                        ) :
-                        noCities(connectionWithAPI)
-                    )
+                noCities("Loading...") :
+                connectionWithAPI === "connected" ?
+                (filteredCities.length === 0 ?
+                noCities("There are no cities to see") :
+                renderCities
+                ) :
+                noCities(connectionWithAPI)
                 }
             </section>
         </main>
