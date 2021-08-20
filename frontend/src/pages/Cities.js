@@ -1,38 +1,21 @@
 import React, {useEffect, useState} from "react"
 import {Link} from "react-router-dom"
-import axios from "axios"
+import {connect} from "react-redux"
+import citiesAction from "../redux/actions/citiesAction.js"
 
-const Cities = () => {
-    const [listCities, setListCities] = useState([])
-    const [connectionWithAPI, setConnectionWithAPI] = useState("connected")
+const Cities = (props) => {
+    // const [listCities, setListCities] = useState(props.allTheCities)
+    // const [connectionWithAPI, setConnectionWithAPI] = useState("connected")
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         window.scroll(0,0)
-        const getCities = async () => {
-            try {
-                await axios.get("http://localhost:4000/api/cities")
-                .then(res => {
-                    if (res.data.success) {
-                        setListCities(res.data.response)
-                    } else {
-                        throw new Error ("Fail to connect with the database")
-                    }
-                })
-            }
-            catch (error){
-                setConnectionWithAPI(
-                    error.message.includes("database") ?
-                    error.message :
-                    "Fail to connect with the API"
-                )
-                console.error(error)
-            }
-            finally {
-                setLoading(false)
-            }
+        const loadingCities = async () => {
+            await props.getCities()
+            setLoading(false)
         }
-        getCities()
+        loadingCities()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const [citySearched, setCitySearched] = useState('')
@@ -40,16 +23,8 @@ const Cities = () => {
         setCitySearched(e.target.value.trim().toLowerCase())
     }
     
-    const filteredCities = listCities.filter(city => {
-        const arrayCityName = city.cityName.toLowerCase().split("")
-        const arrayCitySearched = citySearched.split("")
-        let count = 0
-        arrayCitySearched.forEach((character, index) => {
-            if (character === arrayCityName[index]) {
-                count = count + 1
-            }
-        })
-        return(count === arrayCitySearched.length || citySearched === '')
+    const filteredCities = props.allTheCities.filter(city => {
+        return city.cityName.toLowerCase().startsWith(citySearched)
     })
 
     const renderCities = filteredCities.map(city => {
@@ -79,7 +54,7 @@ const Cities = () => {
                 </fieldset>
             </section>
             <section className="citiesRenderedSection">
-                {loading ?
+                {/* {loading ?
                 noCities("Loading...") :
                 connectionWithAPI === "connected" ?
                 (filteredCities.length === 0 ?
@@ -87,9 +62,26 @@ const Cities = () => {
                 renderCities
                 ) :
                 noCities(connectionWithAPI)
+                } */}
+                {loading ?
+                noCities("Loading...") :
+                filteredCities.length === 0 ?
+                noCities("There are no cities to see") :
+                renderCities
                 }
             </section>
         </main>
     )
 }
-export default Cities
+
+const mapStateToProps = (state) => {
+    return {
+        allTheCities: state.cities.listCities
+    }
+}
+
+const mapDispatchToProps = {
+    getCities: citiesAction.readCities
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cities)

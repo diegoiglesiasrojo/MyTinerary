@@ -2,10 +2,12 @@ import React, {useState, useEffect} from "react"
 import {Link} from "react-router-dom"
 import axios from "axios"
 import Itinerary from "../components/Itinerary.js"
+import {connect} from "react-redux"
+import cityAction from "../redux/actions/cityAction.js"
 
 const City = (props) => {
-    const [citySelected, setCitySelected] = useState({})
-    const [connectionWithAPI, setConnectionWithAPI] = useState("connected")
+    // const [citySelected, setCitySelected] = useState({})
+    // const [connectionWithAPI, setConnectionWithAPI] = useState("connected")
     const [loading, setLoading] = useState(true)
     const [AllItineraries, setAllItineraries] = useState([])
     const [connectionWithAPIItineraries, setConnectionWithAPIItineraries] = useState("connected")
@@ -13,28 +15,11 @@ const City = (props) => {
 
     useEffect(() => {
         window.scroll(0,0)
-        const getCityById = async () => {
-            try {
-                await axios.get(`http://localhost:4000/api/cities/${props.match.params.id}`)
-                .then(res => {
-                    if (res.data.success) {
-                        setCitySelected(res.data.response)
-                    } else {
-                        throw new Error ("Fail to connect with the database")
-                    }
-                })
-            } catch (error) {
-                setConnectionWithAPI(
-                    error.message.includes("database") ?
-                    error.message :
-                    "Fail to connect with the API"
-                )
-                console.error(error)
-            } finally {
-                setLoading(false)
-            }
+        const loadingCity = async () => {
+            await props.getCity(props.match.params.id)
+            setLoading(false)
         }
-        getCityById()
+        loadingCity()
 
         const getAllItineraries = async () => {
             try {
@@ -77,7 +62,9 @@ const City = (props) => {
 
     const renderCity = () => {
         return (
-            <h1>{citySelected.cityName}</h1>
+            <section className="cityIntroductionSection" style={{backgroundImage : `url(${props.cityObject.cityImage})`}} >
+                <h1>{props.cityObject.cityName}</h1>
+            </section>
         )
     }
 
@@ -88,17 +75,20 @@ const City = (props) => {
             </section>
         )
     })
-
+    // <section className="cityIntroductionSection" style={{backgroundImage : `url(${props.citySelected.cityImage})`}} >
+console.log(props)
     return (
         <main className="cityMain">
-            <section className="cityIntroductionSection" style={{backgroundImage : `url(${citySelected.cityImage})`}} >
-                {loading ?
-                renderH("Loading...", "h1") :
-                connectionWithAPI === "connected" ?
-                renderCity() :
-                renderH(connectionWithAPI, "h1")
-                }
-            </section>
+            {/* {loading ?
+            renderH("Loading...", "h1") :
+            connectionWithAPI === "connected" ?
+            renderCity() :
+            renderH(connectionWithAPI, "h1")
+            } */}
+            {loading ?
+            <section className="cityIntroductionSection"><h1>Loading...</h1></section> :
+            renderCity()
+            }
             {loadingItineraries ?
             renderSection("Loading...") :
             connectionWithAPIItineraries === "connected" ?
@@ -115,4 +105,14 @@ const City = (props) => {
     )
 }
 
-export default City
+const mapStateToProps = (state) => {
+    return {
+        cityObject: state.city.citySelected
+    }
+}
+
+const mapDispatchToProps = {
+    getCity: cityAction.readCity()
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(City)
