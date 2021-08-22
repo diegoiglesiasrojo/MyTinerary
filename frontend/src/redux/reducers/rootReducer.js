@@ -1,9 +1,9 @@
 import {combineReducers} from "redux"
 import citiesReducer from "./citiesReducer.js"
-import cityReducer from "./cityReducer.js"
+import itinerariesReducer from "./itinerariesReducer.js"
 
 const rootReducer = combineReducers({
     cities: citiesReducer,
-    city: cityReducer
+    itineraries: itinerariesReducer
 })
 export default rootReducer

@@ -449,6 +449,7 @@ main .cityItinerarySection aside .cityItineraryDivDropDown {
     padding: 10px;
     border-radius: 20px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 main .cityItinerarySection aside .cityItineraryDivDropDownContainer {

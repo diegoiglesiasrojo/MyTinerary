@@ -1,12 +1,12 @@
 import axios from "axios"
 
-const citiesAction = {
-    readCities: () => {
+const itinerariesAction = {
+    readItineraries: (id) => {
         return async (dispatch) => {
             try {
-                let response = await axios.get("http://localhost:4000/api/cities")
+                let response = await axios.get(`http://localhost:4000/api/itineraries/${id}`)
                 if (response.data.success) {
-                    dispatch({type: "GET_CITIES", payload: response.data.response})
+                    dispatch({type: "GET_ITINERARIES", payload: response.data.response})
                     return{success: true, error: null}
                 } else {
                     throw new Error("Fail to connect with the database")
@@ -16,11 +16,6 @@ const citiesAction = {
                 return{success: false, error: err}
             }
         }
-    },
-    readFilteredCities: (citySearched) => {
-        return (dispatch) => {
-            dispatch({type: "GET_FILTERED_CITIES", payload: citySearched})
-        }
     }
 }
-export default citiesAction
+export default itinerariesAction

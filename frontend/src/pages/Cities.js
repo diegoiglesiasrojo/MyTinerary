@@ -4,30 +4,27 @@ import {connect} from "react-redux"
 import citiesAction from "../redux/actions/citiesAction.js"
 
 const Cities = (props) => {
-    // const [listCities, setListCities] = useState(props.allTheCities)
-    // const [connectionWithAPI, setConnectionWithAPI] = useState("connected")
+    const [connectionWithAPI, setConnectionWithAPI] = useState("connected")
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         window.scroll(0,0)
-        const loadingCities = async () => {
-            await props.getCities()
+        props.getCities()
+        .then(res => {
+            if (!res.success) {
+                setConnectionWithAPI(res.error)
+            }
             setLoading(false)
-        }
-        loadingCities()
+            props.getFilteredCities("")
+        })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const [citySearched, setCitySearched] = useState('')
     const inputHandler = (e) => {
-        setCitySearched(e.target.value.trim().toLowerCase())
+        props.getFilteredCities(e.target.value.trim().toLowerCase())
     }
     
-    const filteredCities = props.allTheCities.filter(city => {
-        return city.cityName.toLowerCase().startsWith(citySearched)
-    })
-
-    const renderCities = filteredCities.map(city => {
+    const renderCities = props.listOfFilteredCities.map(city => {
         return (
             <Link to={`/city/${city._id}`} key={city._id}>
                 <article className="citiesRenderCities" style={{backgroundImage : `url(${city.cityImage})`}} >
@@ -54,20 +51,14 @@ const Cities = (props) => {
                 </fieldset>
             </section>
             <section className="citiesRenderedSection">
-                {/* {loading ?
+                {loading ?
                 noCities("Loading...") :
                 connectionWithAPI === "connected" ?
-                (filteredCities.length === 0 ?
+                (props.listOfFilteredCities.length === 0 ?
                 noCities("There are no cities to see") :
                 renderCities
                 ) :
                 noCities(connectionWithAPI)
-                } */}
-                {loading ?
-                noCities("Loading...") :
-                filteredCities.length === 0 ?
-                noCities("There are no cities to see") :
-                renderCities
                 }
             </section>
         </main>
@@ -76,12 +67,13 @@ const Cities = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        allTheCities: state.cities.listCities
+        listOfFilteredCities: state.cities.listFilteredCities
     }
 }
 
 const mapDispatchToProps = {
-    getCities: citiesAction.readCities
+    getCities: citiesAction.readCities,
+    getFilteredCities: citiesAction.readFilteredCities
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cities)

@@ -2,7 +2,7 @@ const Itinerary = require("../models/Itinerary.js")
 
 const itineraryControllers = {
     readAllItineraries: (req, res) => {
-        Itinerary.find()
+        Itinerary.find().populate("cityId")
         .then(itineraries => res.json({success: true, response: itineraries}))
         .catch(error => {
             res.json({success: false})
@@ -10,10 +10,25 @@ const itineraryControllers = {
         })
     },
     readItineraryById: (req, res) => {
-        Itinerary.findOne({_id: req.params.id})
+        Itinerary.findOne({_id: req.params.id}).populate("cityId")
         .then(itinerary => {
             if (itinerary) {
                 res.json({success: true, response: itinerary})
+            } else {
+                throw new Error
+            }
+        })
+        .catch(error => {
+            res.json({success: false})
+            console.error(error)
+        })
+    },
+    readItineraryByCityId: (req, res) => {
+        Itinerary.find({cityId: req.params.id})
+        .populate("cityId")
+        .then(itineraries => {
+            if (itineraries) {
+                res.json({success: true, response: itineraries})
             } else {
                 throw new Error
             }
@@ -35,6 +50,7 @@ const itineraryControllers = {
             itineraryLikes: req.body.itineraryLikes,
             itineraryHashtags: req.body.itineraryHashtags,
             itineraryComments: req.body.itineraryComments,
+            cityId: req.body.cityId,
         })
         itineraryToCreate.save()
         .then(() => res.json({ success: true }))

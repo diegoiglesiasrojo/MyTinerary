@@ -17,6 +17,7 @@ router.route("/itineraries")
 .post(itineraryControllers.createItinerary)
 
 router.route("/itineraries/:id")
+.get(itineraryControllers.readItineraryByCityId)
 .get(itineraryControllers.readItineraryById)
 .delete(itineraryControllers.deleteItineraryById)
 .put(itineraryControllers.updateItineraryById)
