@@ -62,18 +62,23 @@ const Itineraries = (props) => {
             </section>
         )
     }
-
+    
     return(
         loading === true ?
         <section className="cityItinerarySection">
             <p>Loading...</p>
         </section> :
         connectionWithAPI === "connected" ?
+        (props.listOfItineraries.length === 0 ?
+        <section className="cityItinerarySection">
+            <p>There are not itineraries to see</p>
+        </section> :
         props.listOfItineraries.map(itinerary => {
             return (
                 renderItinerary(itinerary)
             )
-        }) :
+        }) 
+        ) :
         <section className="cityItinerarySection">
             <p>{connectionWithAPI}</p>
         </section>
