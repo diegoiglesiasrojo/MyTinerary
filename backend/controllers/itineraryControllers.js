@@ -10,7 +10,7 @@ const itineraryControllers = {
         })
     },
     readItineraryById: (req, res) => {
-        Itinerary.findOne({_id: req.params.id}).populate("cityId")
+        Itinerary.findOne({_id: req.params.id})
         .then(itinerary => {
             if (itinerary) {
                 res.json({success: true, response: itinerary})
@@ -25,13 +25,8 @@ const itineraryControllers = {
     },
     readItineraryByCityId: (req, res) => {
         Itinerary.find({cityId: req.params.id})
-        .populate("cityId")
         .then(itineraries => {
-            if (itineraries) {
-                res.json({success: true, response: itineraries})
-            } else {
-                throw new Error
-            }
+            res.json({success: true, response: itineraries})
         })
         .catch(error => {
             res.json({success: false})

@@ -22,14 +22,14 @@ const City = (props) => {
         )
     }
 
+    if(props.listOfCities.length === 0){
+        props.history.push("/cities")
+        return false
+    }
+
     return (
         <main className="cityMain">
-            {props.listOfCities.length === 0 ?
-            <section className="cityIntroductionSection">
-                <h1>There are not a city to see</h1>
-            </section> :
-            renderCity()
-            }
+            {renderCity()}
             <section className="cityReturnSection">
                 <Link to="/cities"><p>Come back to discover a City</p></Link>
             </section>
