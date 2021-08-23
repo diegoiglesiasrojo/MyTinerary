@@ -11,10 +11,10 @@ const ItineraryAside = (props) => {
 
     return (
         <aside>
-            <div className="cityItineraryDivDropDownContainer" style={{display: dropDown ? "flex" : "none"}}>
+            <div className="itineraryDivDropDownContainer" style={{display: dropDown ? "flex" : "none"}}>
                 <p><span><FaTools/></span>Under construction<span><FaTools/></span></p>
             </div>
-            <div className="cityItineraryDivDropDown" onClick={handleDropDown}>{dropDown ? "View Less" : "View More"}</div>
+            <div className="itineraryDivDropDown" onClick={handleDropDown}>{dropDown ? "View Less" : "View More"}</div>
         </aside>
     )
 }

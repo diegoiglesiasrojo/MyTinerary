@@ -380,7 +380,7 @@ main .cityIntroductionSection h1 {
     border-radius: 20px;
 }
 
-main .cityItinerarySection {
+main .itinerarySection {
     color: #171717;
     background: #EDEDED;
     border: 10px solid #171717;
@@ -390,75 +390,109 @@ main .cityItinerarySection {
     width: 80%;
 }
 
-main .cityItinerarySection article {
+main .itinerarySection .itinerarySectionMessage {
+    text-align: center;
+}
+
+main .itinerarySection article {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-main .cityItinerarySection article p {
-    text-align: justify;
-}
-
-main .cityItinerarySection article .cityItinenaryDivUser {
-    width: 80%;
-    border: 3px solid #171717;
-    border-radius: 20px;
-    padding: 2px;
-    margin: 4px 0px;
+main .itinerarySection article .itineraryTitle {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
     align-items: center;
 }
 
-main .cityItinerarySection article .cityItinenaryDivUser .cityItinenaryDivImage {
+main .itinerarySection article .itineraryTitle p {
+    text-align: justify;
+}
+
+main .itinerarySection article .itineraryPublisherAndLikes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .itinerarySection article .itinenaryDivPublisher {
+    border: 1px solid #DA0037;
+    border-radius: 20px;
+    padding: 5px;
+    margin: 4px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .itinerarySection article .itinenaryDivPublisher .itinenaryDivImage {
     width: 40px;
     height: 40px;
     background-position: 50%;
     background-size: cover;
     border-radius: 50%;
+    margin-right: 5px;
 }
 
-main .cityItinerarySection article .cityItinenaryDivUser .cityItinenaryDivPerson {
+main .itinerarySection article .itinenaryDivPublisher .itinenaryDivPerson {
     display: flex;
     flex-direction: column;
 }
 
-main .cityItinerarySection article .cityItineraryDivDuration,
-main .cityItinerarySection article .cityItineraryDivPrice,
-main .cityItinerarySection article .cityItineraryDivLikes,
-main .cityItinerarySection article .cityItineraryDivHashtags {
+main .itinerarySection article .itineraryDurationAndPrice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+main .itinerarySection article .itineraryDivDuration,
+main .itinerarySection article .itineraryDivPrice,
+main .itinerarySection article .itineraryDivLikes,
+main .itinerarySection article .itineraryDivHashtags {
     width: 80%;
     display: flex;
     justify-content: center;
     margin: 4px 0px;
 }
 
-main .cityItinerarySection article .cityItineraryDivHashtags p {
-    margin: 4px;
+main .itinerarySection article .itineraryDivPrice svg {
+    color: green;
+    font-size: 1.5rem;
+    margin-left: 2px;
 }
 
-main .cityItinerarySection aside {
+main .itinerarySection article .itineraryDivLikes svg {
+    color: #DA0037;
+    font-size: 1rem;
+}
+
+main .itinerarySection article .itineraryDivHashtags p {
+    margin: 0px 4px;
+}
+
+main .itinerarySection aside {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-main .cityItinerarySection aside .cityItineraryDivDropDown {
+main .itinerarySection aside .itineraryDivDropDown {
     background: #DA0037;
     padding: 10px;
     border-radius: 20px;
     cursor: pointer;
     margin-top: 10px;
+    color: #EDEDED;
 }
 
-main .cityItinerarySection aside .cityItineraryDivDropDownContainer {
-    min-height: 200px;
+main .itinerarySection aside .itineraryDivDropDownContainer {
+    min-height: 200px; /*WIP*/
     width: 100%;
     border: 3px solid #171717;
     border-radius: 20px;
-    margin-top: 8px;
-    display: flex;
+    margin-top: 4px;
     justify-content: center;
     align-items: center;
 }
@@ -524,7 +558,23 @@ main .cityReturnSection a p {
 
     main .citiesIntroductionSection fieldset label{
         font-size: 1.2rem;
-    }    
+    }
+
+    main .itinerarySection article .itineraryPublisherAndLikes {
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 80%;
+    }
+    
+    main .itinerarySection article .itineraryDurationAndPrice {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    main .itinerarySection article .itineraryDivHashtags {
+        justify-content: space-evenly;
+    }
+
 }
 
 @media screen and (min-width:767px){
@@ -580,6 +630,10 @@ main .cityReturnSection a p {
     main .cityIntroductionSection h1 {
         font-size: 3.5rem;
     }
+
+    main .itinerarySection {
+        font-size: 1.3rem;
+    }
 }
 
 @media screen and (min-width:950px){
@@ -593,5 +647,9 @@ main .cityReturnSection a p {
 
     main .citiesIntroductionSection fieldset label{
         font-size: 2.2rem;
+    }
+
+    main .itinerarySection {
+        font-size: 1.5rem;
     }
 }

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react"
 import {connect} from "react-redux"
 import itinerariesAction from "../redux/actions/itinerariesAction.js"
 import ItineraryAside from "./ItineraryAside.js"
+import {FaRegMoneyBillAlt} from "react-icons/fa"
+import {AiFillLike} from "react-icons/ai"
 
 const Itineraries = (props) => {
     const [connectionWithAPI, setConnectionWithAPI] = useState("connected")
@@ -19,6 +21,20 @@ const Itineraries = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const renderPrice = (price) => {
+        let money = []
+        for (let i = 0; i < price; i++) {
+            money.push(i)
+        }
+        return (
+            money.map(bill => {
+                return(
+                    <FaRegMoneyBillAlt key={bill}/>
+                )
+            })
+        )
+    }
+
     const renderHashtags = (itinerary) => {
         return (
             itinerary.itineraryHashtags.map(hashtag => {
@@ -31,30 +47,36 @@ const Itineraries = (props) => {
 
     const renderItinerary = (itinerary) => {
         return (
-            <section className="cityItinerarySection" key={itinerary._id}>
+            <section className="itinerarySection" key={itinerary._id}>
                 <article>
-                    <h2>{itinerary.itineraryTitle}</h2>
-                    <p>{itinerary.itineraryDescription}</p>
-                    <div className="cityItinenaryDivUser">
-                        <div className="cityItinenaryDivImage" style={{backgroundImage : `url(${itinerary.itineraryPublisherImage})`}}></div>
-                        <div className="cityItinenaryDivPerson">
-                            <p>{itinerary.itineraryPublisherName}</p>
-                            <p>{itinerary.itineraryPublisherSurname}</p>
+                    <div className="itineraryTitle">
+                        <h2>{itinerary.itineraryTitle}</h2>
+                        <p>{itinerary.itineraryDescription}</p>
+                    </div>
+                    <div className="itineraryPublisherAndLikes">
+                        <div className="itinenaryDivPublisher">
+                            <div className="itinenaryDivImage" style={{backgroundImage : `url(${itinerary.itineraryPublisherImage})`}}></div>
+                            <div className="itinenaryDivPerson">
+                                <p>{itinerary.itineraryPublisherName}</p>
+                                <p>{itinerary.itineraryPublisherSurname}</p>
+                            </div>
+                        </div>
+                        <div className="itineraryDivLikes">
+                            <p>Likes:</p>
+                            <p>{itinerary.itineraryLikes}<AiFillLike/></p>
                         </div>
                     </div>
-                    <div className="cityItineraryDivDuration">
-                        <p>Duration:</p>
-                        <p>{itinerary.itineraryDuration}</p>
+                    <div className="itineraryDurationAndPrice">
+                        <div className="itineraryDivDuration">
+                            <p>Duration:</p>
+                            <p>{itinerary.itineraryDuration}hs</p>
+                        </div>
+                        <div className="itineraryDivPrice">
+                            <p>Price:</p>
+                            <p>{renderPrice(itinerary.itineraryPrice)}</p>
+                        </div>
                     </div>
-                    <div className="cityItineraryDivPrice">
-                        <p>Price:</p>
-                        <p>{itinerary.itineraryPrice}</p>
-                    </div>
-                    <div className="cityItineraryDivLikes">
-                        <p>Likes:</p>
-                        <p>{itinerary.itineraryLikes}</p>
-                    </div>
-                    <div className="cityItineraryDivHashtags">
+                    <div className="itineraryDivHashtags">
                     {renderHashtags(itinerary)}
                     </div>
                 </article>
@@ -63,25 +85,27 @@ const Itineraries = (props) => {
         )
     }
     
+    const renderSection = (text) => {
+        return(
+            <section className="itinerarySection">
+                <p className="itinerarySectionMessage">{text}</p>
+            </section>
+        )
+    }
+
     return(
         loading === true ?
-        <section className="cityItinerarySection">
-            <p>Loading...</p>
-        </section> :
+        renderSection("Loading...") :
         connectionWithAPI === "connected" ?
         (props.listOfItineraries.length === 0 ?
-        <section className="cityItinerarySection">
-            <p>There are not itineraries to see</p>
-        </section> :
+        renderSection("There are not itineraries to see") :
         props.listOfItineraries.map(itinerary => {
             return (
                 renderItinerary(itinerary)
             )
         }) 
         ) :
-        <section className="cityItinerarySection">
-            <p>{connectionWithAPI}</p>
-        </section>
+        renderSection(connectionWithAPI)
     )
 }
 
