@@ -81,7 +81,7 @@ const itineraryControllers = {
             res.json({success: false})
             console.error(error)
         })
-    } 
+    }
 }
 
 module.exports = itineraryControllers
