@@ -14,8 +14,6 @@ const Footer = () => {
                 <nav className="navFooter">
                     <Link to="/"><p>Home</p></Link>
                     <Link to="/cities"><p>Cities</p></Link>
-                    <Link to="/"><p>Log In</p></Link>
-                    <Link to="/"><p>Sign Up</p></Link>
                 </nav>
             </div>
             <nav className="socialMediaFooter">

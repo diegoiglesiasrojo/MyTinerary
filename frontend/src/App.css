@@ -52,6 +52,8 @@ header .headerMenuButtom{
 }
 
 header .headerUserIcon {
+    background-position: 50%;
+    background-size: cover;
     font-size: 1.3rem;
     margin-right: 20px;
     cursor: pointer;
@@ -72,7 +74,11 @@ header nav {
     align-items: center;
 }
 
-header nav a p {
+header nav .logOutNav {
+    cursor: pointer;
+}
+
+header nav a p, header nav .logOutNav {
     font-size: 1.3rem;
     margin-left: 0px;
 }
@@ -520,7 +526,7 @@ main .cityReturnSection a p {
         align-items: center;
     }
     
-    header nav a p {
+    header nav a p, header nav .logOutNav {
         font-size: 1.8rem;
     }   
 

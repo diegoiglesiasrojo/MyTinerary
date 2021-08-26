@@ -1,5 +1,6 @@
 const User = require("../models/User.js")
 const bcryptjs = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 const userControllers = {
     createAccount: (req, res) => {
@@ -8,14 +9,15 @@ const userControllers = {
         const newUser = new User({
             name, surname, image, country, mail, password: encryptedPassword, admin
         })
+        const token = jwt.sign({...newUser}, process.env.SECRETORKEY)
         User.findOne({mail: mail})
         .then(response => {
             if(response) {
                 throw new Error("Username already exist")
             } else {
                 newUser.save()
-                .then(() => res.json({success: true}))
-                .catch(e => {throw new Error(e)})
+                .then(() => res.json({success: true, response: {name: newUser.name, image: newUser.image, token}}))
+                .catch(e => res.json({success: false, error: e.message}))
             }
         })
         .catch(e => {
@@ -69,7 +71,8 @@ const userControllers = {
                 throw new Error("Username or password incorrect")
             } else {
                 if(bcryptjs.compareSync(password, account.password)) {
-                    res.json({success: true, response: account})
+                    const token = jwt.sign({...account}, process.env.SECRETORKEY)
+                    res.json({success: true, response: {name: account.name, image: account.image, token}})
                 } else {
                     throw new Error("Username or password incorrect")
                 }
