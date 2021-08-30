@@ -7,7 +7,7 @@ const citiesReducer = (state = {listCities: [], listFilteredCities: []}, action)
             }
         case "GET_FILTERED_CITIES":
             const filteredCities = state.listCities.filter(city => {
-                return city.cityName.toLowerCase().startsWith(action.payload)
+                return city.cityName.toLowerCase().startsWith(action.payload.trim().toLowerCase())
             })
             return {
                 ...state,

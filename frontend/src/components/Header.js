@@ -34,11 +34,11 @@ const Header = (props) => {
 
     return (
         <header>
-            <Link to="/">
+            <Link className="logoHeader" to="/">
                 <p><span><FaPaperPlane/></span>MyTinerary</p>
                 <p>in Europe</p>
             </Link>
-            {props.userName && <p>Welcome {props.userName}</p>}
+            {props.userName && <p className="headerUserName">Welcome {props.userName}</p>}
             <div className="divContainerNav">
                 <nav onMouseOut={togleDisplayMenu} style={{display: displayNavMenu ? "flex":"none"}}>
                     <NavLink exact to="/"><p>Home</p></NavLink>
@@ -49,7 +49,14 @@ const Header = (props) => {
                     {!props.userToken ? <Link to="/logIn"><p>Log In</p></Link> : <p onClick={() => props.logOutUser()} className="logOutNav">LogOut</p>}
                 </nav>
                 <div onClick={togleDisplayMenu} style={{display: displayMenuButtom ? "flex":"none"}} className="headerMenuButtom"><GrMenu/></div>
-                <div onClick={togleDisplayUser} style={{display: displayMenuButtom ? "flex":"none", backgroundImage : `url('${props.userImage}')`}} className="headerUserIcon">{!props.userImage && <FaUserAlt/>}</div>
+                <div onClick={togleDisplayUser} style={{
+                    display: displayMenuButtom ? "flex":"none", 
+                    backgroundImage: `url('${props.userImage}')`, 
+                    backgroundPosition: "center", 
+                    backgroundSize: "cover"
+                    }} className="headerUserIcon">
+                        {!props.userImage && <FaUserAlt/>}
+                </div>
             </div>
         </header>
     )

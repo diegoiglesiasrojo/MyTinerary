@@ -9,11 +9,10 @@ const usersAction = {
                     dispatch({type: "LOGIN_OR_SIGNUP", payload: response.data.response})
                     return{success: true}
                 } else {
-                    throw new Error(response.data.error)
+                    return{success: false, error: response.data.error}
                 }
             } catch (e) {
-                // let err = e.message.includes("database") ? e.message : "Fail to connect with the API"
-                return{success: false, error: e}
+                return{success: false, error: [{path: ["failAPI"], message: "Fail to connect with the API"}]}
             }
         }
     },
@@ -28,7 +27,7 @@ const usersAction = {
                     throw new Error(response.data.error)
                 }
             } catch (e) {
-                return{success: false, error: e}
+                return{success: false, error: e.message}
             }
         }
     },
@@ -41,7 +40,16 @@ const usersAction = {
         return (dispatch) => {
             dispatch({ type: "LOG_OUT"})
         }
+    },
+    getCountries: () => {
+        return async () => {
+            try {
+                let response = await axios.get("https://restcountries.eu/rest/v2/all")
+                return{success: true, response: response}
+            } catch (e) {
+                return{success: false, error: e.message}
+            }
+        }
     }
-    // ("Fail to connect with the database")
 }
 export default usersAction

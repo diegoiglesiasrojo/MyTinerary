@@ -23,6 +23,10 @@ header p, footer p{
     margin-left: 20px;
 }
 
+header .headerUserName {
+    display: none;
+}
+
 header p span, footer p span{
     color: #EDEDED;
     position: relative;
@@ -52,8 +56,6 @@ header .headerMenuButtom{
 }
 
 header .headerUserIcon {
-    background-position: 50%;
-    background-size: cover;
     font-size: 1.3rem;
     margin-right: 20px;
     cursor: pointer;
@@ -518,8 +520,100 @@ main .cityReturnSection a p {
     padding: 10px;
 }
 
+.signUpMain,
+.logInMain {
+    align-items: center;
+}
+
+main .signUpForm,
+main .logInForm {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 10px solid #171717;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+main .signUpForm .signUpDiv,
+main .logInForm .logInDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+main .signUpForm .signUpDiv input,
+main .signUpForm .signUpDiv select,
+main .logInForm .logInDiv input {
+    color: #EDEDED;
+    background: #171717;
+    width: 80%;
+    margin-top: 10px;
+}
+
+main .signUpForm .signUpDiv select option {
+    color: #b1b1b1;
+}
+
+main .signUpForm .signUpDiv input::placeholder,
+main .logInForm .logInDiv input::placeholder { 
+    color: #b1b1b1;
+}
+
+main .signUpForm p,
+main .logInForm .logInDiv p {
+    color: #DA0037;
+    margin-top: 10px;
+}
+
+main .signUpForm .signUpDivButtoms,
+main .logInForm .logInDivButtoms {
+    margin-top: 10px;
+}
+
+main .signUpForm .signUpDivButtoms input,
+main .logInForm .logInDivButtoms input {
+    color: #EDEDED;
+    background: #171717;
+    padding: 5px;
+    margin: 0px 10px;
+}
+
+main .signUpForm button,
+main .logInForm button {
+    margin: 20px 10% 0px 10%;
+    width: auto;
+}
+
+main .signUpCallToAction,
+main .logInCallToAction {
+    margin: 10px 10%;
+    background: #DA0037;
+    border-radius: 20px;
+}
+
+main .signUpCallToAction a,
+main .logInCallToAction a {
+    text-decoration: none;
+    color: #EDEDED;
+    text-align: center;
+}
+
+main .signUpCallToAction a p,
+main .logInCallToAction a p {
+    padding: 10px;
+}
+
 @media screen and (min-width:480px){
     
+    header .headerUserName {
+        display: block;
+        align-self: center;
+    }    
+
     header nav {
         flex-direction: row;
         justify-content: space-evenly;
@@ -548,6 +642,21 @@ main .cityReturnSection a p {
         height: 8vh;
         width: 8vh;
     }    
+
+    footer div {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    footer .logoFooter, header .logoHeader {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+    }
+
+    footer .logoFooter p, header .logoHeader p {
+        display: flex;
+    }
 
     main .welcomeSection .titleArticle {
         width: 80%;
@@ -586,23 +695,14 @@ main .cityReturnSection a p {
         justify-content: space-evenly;
     }
 
+    main .signUpForm .signUpDiv input,
+    main .signUpForm .signUpDiv select,
+    main .logInForm .logInDiv input {
+        font-size: 1.5rem;
+    }
 }
 
 @media screen and (min-width:767px){
-    footer div {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    footer .logoFooter {
-        display: flex;
-        flex-direction: column;
-        align-self: center;
-    }
-
-    footer .logoFooter p {
-        display: flex;
-    }
 
     footer .navFooter a p {
         font-size: 2rem;
@@ -645,6 +745,11 @@ main .cityReturnSection a p {
     main .itinerarySection {
         font-size: 1.3rem;
     }
+
+    main .signUpForm,
+    main .logInForm {
+        width: 60%;
+    }
 }
 
 @media screen and (min-width:950px){
@@ -662,5 +767,9 @@ main .cityReturnSection a p {
 
     main .itinerarySection {
         font-size: 1.5rem;
+    }
+
+    main .logInForm {
+        width: 40%;
     }
 }

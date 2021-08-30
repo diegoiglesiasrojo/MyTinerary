@@ -21,7 +21,7 @@ const Cities = (props) => {
     }, [])
 
     const inputHandler = (e) => {
-        props.getFilteredCities(e.target.value.trim().toLowerCase())
+        props.getFilteredCities(e.target.value)
     }
     
     const renderCities = props.listOfFilteredCities.map(city => {
@@ -67,12 +67,12 @@ const Cities = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        listOfFilteredCities: state.cities.listFilteredCities
+        listOfFilteredCities: state.cities.listFilteredCities,
     }
 }
 
 const mapDispatchToProps = {
-    getCities: citiesAction.readCities,
+    getCities: citiesAction.readCities, 
     getFilteredCities: citiesAction.readFilteredCities
 }
 
