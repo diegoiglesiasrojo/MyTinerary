@@ -495,16 +495,6 @@ main .itinerarySection aside .itineraryDivDropDown {
     color: #EDEDED;
 }
 
-main .itinerarySection aside .itineraryDivDropDownContainer {
-    min-height: 200px; /*WIP*/
-    width: 100%;
-    border: 3px solid #171717;
-    border-radius: 20px;
-    margin-top: 4px;
-    justify-content: center;
-    align-items: center;
-}
-
 main .cityReturnSection {
     background: #DA0037;
     border-radius: 20px;
@@ -567,6 +557,7 @@ main .signUpForm p,
 main .logInForm .logInDiv p {
     color: #DA0037;
     margin-top: 10px;
+    text-align: center;
 }
 
 main .signUpForm .signUpDivButtoms,
@@ -604,6 +595,36 @@ main .logInCallToAction a {
 
 main .signUpCallToAction a p,
 main .logInCallToAction a p {
+    padding: 10px;
+}
+
+main .itinerarySection aside .itineraryDivDropDownContainer .withoutActivitiesDiv{
+    width: 80%;
+}
+
+main .itinerarySection aside .itineraryDivDropDownContainer {
+    width: 100%;
+    border: 3px solid #171717;
+    border-radius: 20px;
+    margin-top: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+main .itinerarySection .itineraryDivDropDownContainer .carousel-root {
+    width: 90%;
+    padding: 10px;
+}
+
+main .itinerarySection .itineraryDivDropDownContainer .activityCarrouselImage{
+    height: 150px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+main .itinerarySection .itineraryDivDropDownContainer .activityCarrouselTitle{
+    color: #EDEDED;
     padding: 10px;
 }
 
@@ -700,6 +721,14 @@ main .logInCallToAction a p {
     main .logInForm .logInDiv input {
         font-size: 1.5rem;
     }
+
+    main .itinerarySection .itineraryDivDropDownContainer .carousel-root {
+        width: 80%;
+    }
+    
+    main .itinerarySection .itineraryDivDropDownContainer .activityCarrouselImage{
+        height: 250px;
+    }    
 }
 
 @media screen and (min-width:767px){
@@ -772,4 +801,8 @@ main .logInCallToAction a p {
     main .logInForm {
         width: 40%;
     }
+
+    main .itinerarySection .itineraryDivDropDownContainer .activityCarrouselImage{
+        height: 500px;
+    }    
 }

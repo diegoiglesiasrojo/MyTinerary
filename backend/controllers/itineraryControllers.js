@@ -34,18 +34,21 @@ const itineraryControllers = {
         })
     },
     createItinerary: (req, res) => {
+        const {publisherName, publisherSurname, publisherImage, title, 
+            description, price, duration, likes, hashtags, comments, cityId
+        } = req.body
         const itineraryToCreate = new Itinerary({
-            itineraryPublisherName: req.body.itineraryPublisherName,
-            itineraryPublisherSurname: req.body.itineraryPublisherSurname,
-            itineraryPublisherImage: req.body.itineraryPublisherImage,
-            itineraryTitle: req.body.itineraryTitle,
-            itineraryDescription: req.body.itineraryDescription,
-            itineraryPrice: req.body.itineraryPrice,
-            itineraryDuration: req.body.itineraryDuration,
-            itineraryLikes: req.body.itineraryLikes,
-            itineraryHashtags: req.body.itineraryHashtags,
-            itineraryComments: req.body.itineraryComments,
-            cityId: req.body.cityId,
+            publisherName,
+            publisherSurname,
+            publisherImage,
+            title,
+            description,
+            price,
+            duration,
+            likes,
+            hashtags,
+            comments,
+            cityId
         })
         itineraryToCreate.save()
         .then(() => res.json({ success: true }))
@@ -70,6 +73,38 @@ const itineraryControllers = {
     },
     updateItineraryById: (req, res) => {
         Itinerary.findOneAndUpdate({_id: req.params.id}, {...req.body})
+        .then( itinerary => {
+            if(itinerary) {
+                res.json({ success: true })
+            } else {
+                throw new Error
+            }
+        })
+        .catch(error => {
+            res.json({success: false})
+            console.error(error)
+        })
+    },
+    pushItineraryLikes: (req, res) => {
+        Itinerary.findOneAndUpdate({_id: req.params.id}, {
+            $push: {likes: req.body.mail}
+        })
+        .then( itinerary => {
+            if(itinerary) {
+                res.json({ success: true })
+            } else {
+                throw new Error
+            }
+        })
+        .catch(error => {
+            res.json({success: false})
+            console.error(error)
+        })
+    },
+    pullItineraryLikes: (req, res) => {
+        Itinerary.findOneAndUpdate({_id: req.params.id}, {
+            $pull: {likes: req.body.mail}
+        })
         .then( itinerary => {
             if(itinerary) {
                 res.json({ success: true })

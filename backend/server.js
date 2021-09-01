@@ -4,7 +4,9 @@ const router = require("./route/index.js")
 require("dotenv").config()
 require("./config/database.js")
 const passport = require("passport")
-require("./config/passport.js")
+require("./config/userPassport.js")
+require("./config/activityPassport.js")
+require("./config/itineraryPassport.js")
 
 const app = express()
 

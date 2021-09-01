@@ -37,7 +37,7 @@ const Itineraries = (props) => {
 
     const renderHashtags = (itinerary) => {
         return (
-            itinerary.itineraryHashtags.map(hashtag => {
+            itinerary.hashtags.map(hashtag => {
                 return(
                     <p key={hashtag}>{`#${hashtag}`}</p>
                 )
@@ -50,37 +50,37 @@ const Itineraries = (props) => {
             <section className="itinerarySection" key={itinerary._id}>
                 <article>
                     <div className="itineraryTitle">
-                        <h2>{itinerary.itineraryTitle}</h2>
-                        <p>{itinerary.itineraryDescription}</p>
+                        <h2>{itinerary.title}</h2>
+                        <p>{itinerary.description}</p>
                     </div>
                     <div className="itineraryPublisherAndLikes">
                         <div className="itinenaryDivPublisher">
-                            <div className="itinenaryDivImage" style={{backgroundImage : `url(${itinerary.itineraryPublisherImage})`}}></div>
+                            <div className="itinenaryDivImage" style={{backgroundImage : `url(${itinerary.publisherImage})`}}></div>
                             <div className="itinenaryDivPerson">
-                                <p>{itinerary.itineraryPublisherName}</p>
-                                <p>{itinerary.itineraryPublisherSurname}</p>
+                                <p>{itinerary.publisherName}</p>
+                                <p>{itinerary.publisherSurname}</p>
                             </div>
                         </div>
                         <div className="itineraryDivLikes">
                             <p>Likes:</p>
-                            <p>{itinerary.itineraryLikes}<AiFillLike/></p>
+                            <p>{itinerary.likes.length}<AiFillLike/></p>
                         </div>
                     </div>
                     <div className="itineraryDurationAndPrice">
                         <div className="itineraryDivDuration">
                             <p>Duration:</p>
-                            <p>{itinerary.itineraryDuration}hs</p>
+                            <p>{itinerary.duration}hs</p>
                         </div>
                         <div className="itineraryDivPrice">
                             <p>Price:</p>
-                            <p>{renderPrice(itinerary.itineraryPrice)}</p>
+                            <p>{renderPrice(itinerary.price)}</p>
                         </div>
                     </div>
                     <div className="itineraryDivHashtags">
                     {renderHashtags(itinerary)}
                     </div>
                 </article>
-                <ItineraryAside comments={itinerary.itineraryComments}/>
+                <ItineraryAside id={itinerary._id} comments={itinerary.comments}/>
             </section>
         )
     }

@@ -3,7 +3,8 @@ const router = express.Router()
 const cityControllers = require("../controllers/cityControllers.js")
 const itineraryControllers = require("../controllers/itineraryControllers.js")
 const userControllers = require("../controllers/userControllers.js")
-// const passport = require("passport")
+const activityControllers = require("../controllers/activityControllers.js")
+const passport = require("passport")
 const validator = require("../controllers/validator.js")
 
 router.route("/cities")
@@ -25,14 +26,26 @@ router.route("/itineraries/:id")
 .delete(itineraryControllers.deleteItineraryById)
 .put(itineraryControllers.updateItineraryById)
 
+router.route("/itineraries/pushLikes/:id")
+.put(passport.authenticate("jwt", {session: false}), itineraryControllers.pushItineraryLikes)
+
+router.route("/itineraries/pullLikes/:id")
+.put(passport.authenticate("jwt", {session: false}), itineraryControllers.pullItineraryLikes)
+
 router.route("/user/account")
 .post(validator, userControllers.createAccount)
 
-// router.route("/user/account/:id")
-// .put(passport.authenticate("jwt", {session: false}), userControllers.updateAccountById)
-// .delete(passport.authenticate("jwt", {session: false}), userControllers.deleteAccountById)
+router.route("/user/account/:id")
+.put(passport.authenticate("jwt", {session: false}), userControllers.updateAccountById)
+.delete(passport.authenticate("jwt", {session: false}), userControllers.deleteAccountById)
 
 router.route("/user/logIn")
 .post(userControllers.logIn)
+
+router.route("/activities")
+.post(passport.authenticate("jwt", {session: false}), activityControllers.createActivity)
+
+router.route("/activities/:id")
+.get(passport.authenticate("jwt", {session: false}), activityControllers.readActivityByItineraryId)
 
 module.exports = router

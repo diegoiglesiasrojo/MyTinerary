@@ -24,32 +24,32 @@ const userControllers = {
             res.json({success: false, error: [{path: ["failDataBase"], message: e.message}]})
         })
     },
-    // updateAccountById: (req, res) => {
-    //     User.findOneAndUpdate({_id: req.params.id}, {...req.body})
-    //     .then(account => {
-    //         if(account) {
-    //             res.json({success: true})
-    //         } else {
-    //             throw new Error
-    //         }
-    //     })
-    //     .catch(e => {
-    //         res.json({success: false, error: e.message})
-    //     })
-    // },
-    // deleteAccountById: (req, res) => {
-    //     User.findOneAndDelete({_id: req.params.id})
-    //     .then(account => {
-    //         if(account) {
-    //             res.json({success: true})
-    //         } else {
-    //             throw new Error
-    //         }
-    //     })
-    //     .catch(e => {
-    //         res.json({success: false, error: e.message})
-    //     })
-    // },
+    updateAccountById: (req, res) => {
+        User.findOneAndUpdate({_id: req.params.id}, {...req.body})
+        .then(account => {
+            if(account) {
+                res.json({success: true})
+            } else {
+                throw new Error
+            }
+        })
+        .catch(e => {
+            res.json({success: false, error: e.message})
+        })
+    },
+    deleteAccountById: (req, res) => {
+        User.findOneAndDelete({_id: req.params.id})
+        .then(account => {
+            if(account) {
+                res.json({success: true})
+            } else {
+                throw new Error
+            }
+        })
+        .catch(e => {
+            res.json({success: false, error: e.message})
+        })
+    },
     logIn: (req, res) => {
         const {mail, password, googleLogIn} = req.body
         User.findOne({mail: mail})
