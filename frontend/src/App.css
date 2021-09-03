@@ -607,6 +607,8 @@ main .itinerarySection aside .itineraryDivDropDownContainer {
     border: 3px solid #171717;
     border-radius: 20px;
     margin-top: 4px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -626,6 +628,130 @@ main .itinerarySection .itineraryDivDropDownContainer .activityCarrouselImage{
 main .itinerarySection .itineraryDivDropDownContainer .activityCarrouselTitle{
     color: #EDEDED;
     padding: 10px;
+}
+
+main .itinerarySection .commentsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+main .itinerarySection .commentsContainer .commentsForm {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+}
+
+main .itinerarySection .commentsContainer .commentsForm .commentsFormInput {
+    width: 60%;
+    background: #171717;
+    padding: 5px;
+    color: #EDEDED;
+}
+
+main .itinerarySection .commentsContainer .commentsForm .commentsFormInput::placeholder {
+    color: #b1b1b1;
+}
+
+main .itinerarySection .commentsContainer .commentsForm .commentsFormButtom {
+    padding: 5px;
+    background: #171717;
+    color: #EDEDED;
+}
+
+main .itinerarySection .commentsContainer .commentsError {
+    color: #DA0037;
+    background: #171717;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px 0px;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px solid #171717;
+    margin: 10px 0px;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentUser {
+    display: flex;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentUser .oneCommentUserImage {
+    background-position: center;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentText {
+    padding: 5px;
+    font-size: 1.3rem;
+    margin-left: 10%;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentInput {
+    width: 80%;
+    padding: 5px;
+    background: #171717;
+    color: #EDEDED;
+    margin: 5px 10%;
+    border-radius: 5px;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentOptions {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px 0px 5px 0px;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentOptions .oneCommentTrash,
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentOptions .oneCommentPen {
+    font-size: 1.5rem;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentConfirmDelete {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: #444444;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10%;
+    color: #EDEDED;
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentConfirmDelete p {
+    text-align: center;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentConfirmDelete div {
+    display: flex;
+    justify-content: space-around;
+}
+
+main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentConfirmDelete div button {
+    font-size: 1.5rem;
+    padding: 10px;
+    background: #171717;
+    color: #EDEDED;
+    margin-top: 20px;
+    border-radius: 20px;
 }
 
 @media screen and (min-width:480px){

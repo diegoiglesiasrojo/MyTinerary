@@ -50,6 +50,26 @@ const usersAction = {
                 return{success: false, error: e.message}
             }
         }
+    },
+    getUserComments: (comment) => {
+        return async () => {
+            try {
+                let response = await axios.get(`http://localhost:4000/api/user/comments/${comment.userId}`)
+                if (response.data.success) {
+                    let res = {...response.data.response, 
+                        userId: comment.userId,
+                        comment: comment.comment,
+                        commentId: comment.commentId
+                    }
+                    return{success: true, response: res}
+                } else {
+                    throw new Error("Fail to connect with the database")
+                }
+            } catch (e) {
+                let err = e.message.includes("database") ? e.message : "Fail to connect with the API"
+                return{success: false, error: err}
+            }
+        }
     }
 }
 export default usersAction

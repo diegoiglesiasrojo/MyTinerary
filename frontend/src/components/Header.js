@@ -24,8 +24,10 @@ const Header = (props) => {
         if(localStorage.getItem("token") && props.userToken === null) {
             let user = {
                 name: localStorage.getItem("name"),
+                surname: localStorage.getItem("surname"),
                 image: localStorage.getItem("image"),
-                token: localStorage.getItem("token")
+                token: localStorage.getItem("token"),
+                userId: localStorage.getItem("userId"),
             }
             props.logInUser(user)
         }

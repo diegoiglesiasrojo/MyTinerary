@@ -16,7 +16,7 @@ const userControllers = {
                 throw new Error("Username already exist")
             } else {
                 newUser.save()
-                .then(() => res.json({success: true, response: {name: newUser.name, image: newUser.image, token}}))
+                .then(() => res.json({success: true, response: {name: newUser.name, surname: newUser.surname, image: newUser.image, userId: newUser._id, token}}))
                 .catch(() => res.json({success: false, error: "Fail to connect with the database"}))
             }
         })
@@ -62,7 +62,7 @@ const userControllers = {
                 }
                 if(bcryptjs.compareSync(password, account.password)) {
                     const token = jwt.sign({...account}, process.env.SECRETORKEY)
-                    res.json({success: true, response: {name: account.name, image: account.image, token}})
+                    res.json({success: true, response: {name: account.name, surname: account.surname, image: account.image, userId: account._id, token}})
                 } else {
                     throw new Error("Username or password incorrect")
                 }
@@ -71,7 +71,25 @@ const userControllers = {
         .catch(e => {
             res.json({success: false, error: e.message})
         })
-    }
+    },
+    readUserById: (req, res) => {
+        User.findOne({_id: req.params.id})
+        .then(user => {
+            if (user) {
+                res.json({success: true, response: {
+                    name: user.name,
+                    surname: user.surname,
+                    image: user.image
+                }})
+            } else {
+                throw new Error
+            }
+        })
+        .catch(error => {
+            res.json({success: false})
+            console.error(error)
+        })
+    },
 }
 
 module.exports = userControllers

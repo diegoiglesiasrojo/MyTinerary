@@ -9,20 +9,6 @@ const itineraryControllers = {
             console.error(error)
         })
     },
-    readItineraryById: (req, res) => {
-        Itinerary.findOne({_id: req.params.id})
-        .then(itinerary => {
-            if (itinerary) {
-                res.json({success: true, response: itinerary})
-            } else {
-                throw new Error
-            }
-        })
-        .catch(error => {
-            res.json({success: false})
-            console.error(error)
-        })
-    },
     readItineraryByCityId: (req, res) => {
         Itinerary.find({cityId: req.params.id})
         .then(itineraries => {
@@ -104,6 +90,54 @@ const itineraryControllers = {
     pullItineraryLikes: (req, res) => {
         Itinerary.findOneAndUpdate({_id: req.params.id}, {
             $pull: {likes: req.body.mail}
+        })
+        .then( itinerary => {
+            if(itinerary) {
+                res.json({ success: true })
+            } else {
+                throw new Error
+            }
+        })
+        .catch(error => {
+            res.json({success: false})
+            console.error(error)
+        })
+    },
+    pushItineraryComments: (req, res) => {
+        Itinerary.findOneAndUpdate({_id: req.params.id}, {
+            $push: {comments: req.body}
+        })
+        .then( itinerary => {
+            if(itinerary) {
+                res.json({ success: true })
+            } else {
+                throw new Error
+            }
+        })
+        .catch(error => {
+            res.json({success: false})
+            console.error(error)
+        })
+    },
+    pullItineraryComments: (req, res) => {
+        Itinerary.findOneAndUpdate({_id: req.params.id}, {
+            $pull: {comments: req.body}
+        })
+        .then( itinerary => {
+            if(itinerary) {
+                res.json({ success: true })
+            } else {
+                throw new Error
+            }
+        })
+        .catch(error => {
+            res.json({success: false})
+            console.error(error)
+        })
+    },
+    setItineraryComments: (req, res) => {
+        Itinerary.findOneAndUpdate({"comments.commentId": req.params.id}, {
+            $set: {"comments.$.comment": req.body.comment}
         })
         .then( itinerary => {
             if(itinerary) {

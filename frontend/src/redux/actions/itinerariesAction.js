@@ -16,6 +16,69 @@ const itinerariesAction = {
                 return{success: false, error: err}
             }
         }
+    },
+    createComment: (newCommentObject, itineraryId, token) => {
+        return async () => {
+            try {
+                let response = await axios.put(
+                    `http://localhost:4000/api/itineraries/pushComments/${itineraryId}`,
+                    {...newCommentObject},
+                    {headers: {
+                        authorization: 'Bearer ' + token
+                    }}
+                )
+                if (response.data.success) {
+                    return{success: true}
+                } else {
+                    throw new Error("Fail to connect with the database")
+                }
+            } catch (e) {
+                let err = e.message.includes("database") ? e.message : "Fail to connect with the API"
+                return{success: false, error: err}
+            }
+        }
+    },
+    deleteComment: (commentId, itineraryId, token) => {
+        return async () => {
+            try {
+                let response = await axios.put(
+                    `http://localhost:4000/api/itineraries/pullComments/${itineraryId}`, 
+                    {commentId},
+                    {headers: {
+                        authorization: 'Bearer ' + token
+                    }}
+                )
+                if (response.data.success) {
+                    return{success: true}
+                } else {
+                    throw new Error("Fail to connect with the database")
+                }
+            } catch (e) {
+                let err = e.message.includes("database") ? e.message : "Fail to connect with the API"
+                return{success: false, error: err}
+            }
+        }
+    },
+    updateComment: (commentId, comment, token) => {
+        return async () => {
+            try {
+                let response = await axios.put(
+                    `http://localhost:4000/api/itineraries/setComments/${commentId}`, 
+                    {comment},
+                    {headers: {
+                        authorization: 'Bearer ' + token
+                    }}
+                )
+                if (response.data.success) {
+                    return{success: true}
+                } else {
+                    throw new Error("Fail to connect with the database")
+                }
+            } catch (e) {
+                let err = e.message.includes("database") ? e.message : "Fail to connect with the API"
+                return{success: false, error: err}
+            }
+        }
     }
 }
 export default itinerariesAction

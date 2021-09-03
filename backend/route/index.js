@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
+const passport = require("passport")
 const cityControllers = require("../controllers/cityControllers.js")
 const itineraryControllers = require("../controllers/itineraryControllers.js")
 const userControllers = require("../controllers/userControllers.js")
 const activityControllers = require("../controllers/activityControllers.js")
-const passport = require("passport")
 const validator = require("../controllers/validator.js")
 
 router.route("/cities")
@@ -22,7 +22,6 @@ router.route("/itineraries")
 
 router.route("/itineraries/:id")
 .get(itineraryControllers.readItineraryByCityId)
-.get(itineraryControllers.readItineraryById)
 .delete(itineraryControllers.deleteItineraryById)
 .put(itineraryControllers.updateItineraryById)
 
@@ -31,6 +30,15 @@ router.route("/itineraries/pushLikes/:id")
 
 router.route("/itineraries/pullLikes/:id")
 .put(passport.authenticate("jwt", {session: false}), itineraryControllers.pullItineraryLikes)
+
+router.route("/itineraries/pushComments/:id")
+.put(passport.authenticate("jwt", {session: false}), itineraryControllers.pushItineraryComments)
+
+router.route("/itineraries/pullComments/:id")
+.put(passport.authenticate("jwt", {session: false}), itineraryControllers.pullItineraryComments)
+
+router.route("/itineraries/setComments/:id")
+.put(passport.authenticate("jwt", {session: false}), itineraryControllers.setItineraryComments)
 
 router.route("/user/account")
 .post(validator, userControllers.createAccount)
@@ -42,10 +50,13 @@ router.route("/user/account/:id")
 router.route("/user/logIn")
 .post(userControllers.logIn)
 
+router.route("/user/comments/:id")
+.get(userControllers.readUserById)
+
 router.route("/activities")
-.post(passport.authenticate("jwt", {session: false}), activityControllers.createActivity)
+.post(activityControllers.createActivity)
 
 router.route("/activities/:id")
-.get(passport.authenticate("jwt", {session: false}), activityControllers.readActivityByItineraryId)
+.get(activityControllers.readActivityByItineraryId)
 
 module.exports = router
