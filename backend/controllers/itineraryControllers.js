@@ -73,7 +73,7 @@ const itineraryControllers = {
     },
     pushItineraryLikes: (req, res) => {
         Itinerary.findOneAndUpdate({_id: req.params.id}, {
-            $push: {likes: req.body.mail}
+            $push: {likes: req.body.userId}
         })
         .then( itinerary => {
             if(itinerary) {
@@ -89,7 +89,7 @@ const itineraryControllers = {
     },
     pullItineraryLikes: (req, res) => {
         Itinerary.findOneAndUpdate({_id: req.params.id}, {
-            $pull: {likes: req.body.mail}
+            $pull: {likes: req.body.userId}
         })
         .then( itinerary => {
             if(itinerary) {

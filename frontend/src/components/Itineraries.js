@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import itinerariesAction from "../redux/actions/itinerariesAction.js"
 import ItineraryAside from "./ItineraryAside.js"
 import {FaRegMoneyBillAlt} from "react-icons/fa"
-import {AiFillLike} from "react-icons/ai"
+import Likes from "./Likes.js"
 
 const Itineraries = (props) => {
     const [connectionWithAPI, setConnectionWithAPI] = useState("connected")
@@ -61,10 +61,7 @@ const Itineraries = (props) => {
                                 <p>{itinerary.publisherSurname}</p>
                             </div>
                         </div>
-                        <div className="itineraryDivLikes">
-                            <p>Likes:</p>
-                            <p>{itinerary.likes.length}<AiFillLike/></p>
-                        </div>
+                        <Likes id={itinerary._id} likesArray={itinerary.likes}/>
                     </div>
                     <div className="itineraryDurationAndPrice">
                         <div className="itineraryDivDuration">
@@ -111,7 +108,8 @@ const Itineraries = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        listOfItineraries: state.itineraries.listItineraries
+        listOfItineraries: state.itineraries.listItineraries,
+        userId: state.users.userId
     }
 }
 

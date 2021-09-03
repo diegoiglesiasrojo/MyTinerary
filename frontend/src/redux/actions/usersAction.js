@@ -70,6 +70,27 @@ const usersAction = {
                 return{success: false, error: err}
             }
         }
-    }
+    },
+    updateUser: (user, token, userId) => {
+        return async () => {
+            try {
+                let response = await axios.put(
+                    `http://localhost:4000/api/user/account/${userId}`, 
+                    {user},
+                    {headers: {
+                        authorization: 'Bearer ' + token
+                    }}
+                )
+                if (response.data.success) {
+                    return{success: true}
+                } else {
+                    throw new Error("Fail to connect with the database")
+                }
+            } catch (e) {
+                let err = e.message.includes("database") ? e.message : "Fail to connect with the API"
+                return{success: false, error: [{path: ["failAPI"], message: err}]}
+            }
+        }
+    },
 }
 export default usersAction

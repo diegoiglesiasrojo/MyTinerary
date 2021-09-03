@@ -189,17 +189,28 @@ main .welcomeSection .titleArticle h2, main .carrouselSection h2 {
 }
 
 main .welcomeSection .callToActionArticle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .welcomeSection .arrowDiv {
+    color: #DA0037;
+    font-size: 5rem;
+}
+
+main .welcomeSection .callToActionDiv {
     background: #DA0037;
     border-radius: 20px;
     margin-bottom: 20px;
 }
 
-main .welcomeSection .callToActionArticle a {
+main .welcomeSection .callToActionDiv a {
     text-decoration: none;
     color: #EDEDED;
 }
 
-main .welcomeSection .callToActionArticle a p {
+main .welcomeSection .callToActionDiv a p {
     padding: 10px;
 }
 
@@ -266,7 +277,7 @@ main .carrouselSection .cityContainer:hover .legendCity {
 }
 
 main .citiesIntroductionSection {
-    height: 90vh;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -459,7 +470,6 @@ main .itinerarySection article .itineraryDivDuration,
 main .itinerarySection article .itineraryDivPrice,
 main .itinerarySection article .itineraryDivLikes,
 main .itinerarySection article .itineraryDivHashtags {
-    width: 80%;
     display: flex;
     justify-content: center;
     margin: 4px 0px;
@@ -679,7 +689,6 @@ main .itinerarySection .commentsContainer .oneCommentContainer {
 
 main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentUser {
     display: flex;
-    justify-content: center;
     font-size: 1.1rem;
     margin-top: 5px;
 }
@@ -689,8 +698,8 @@ main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentUser .
     background-size: cover;
     width: 50px;
     height: 50px;
-    margin-right: 10px;
     border-radius: 50%;
+    margin: 0px 10px;
 }
 
 main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentText {
@@ -872,7 +881,7 @@ main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentConfir
     }    
 
     main .citiesIntroductionSection h2 {
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
 
     main .citiesIntroductionSection fieldset label{
@@ -913,7 +922,7 @@ main .itinerarySection .commentsContainer .oneCommentContainer .oneCommentConfir
     }    
 
     main .citiesIntroductionSection h2 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     main .citiesIntroductionSection fieldset label{

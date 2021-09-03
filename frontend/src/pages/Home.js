@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import {Link} from "react-router-dom"
 import Carrousel from "../components/Carrousel.js"
+import {ImArrowDown} from "react-icons/im"
 
 const Home = () => {
     useEffect(() => {
@@ -14,7 +15,12 @@ const Home = () => {
                     <h2>Find your perfect trip, designed by insiders who know and love their cities!</h2>
                 </article>
                 <article className="callToActionArticle">
-                    <Link to="/cities"><p>Go to discover a City</p></Link>
+                    <div className="arrowDiv">
+                        <ImArrowDown/>
+                    </div>
+                    <div className="callToActionDiv">
+                        <Link to="/cities"><p>Go to discover a City</p></Link>
+                    </div>
                 </article>
             </section>
             <section className="carrouselSection">

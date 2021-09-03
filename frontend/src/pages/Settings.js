@@ -1,11 +1,25 @@
 import React from "react"
+import {connect} from "react-redux"
+import usersAction from "../redux/actions/usersAction.js"
 
 const Settings = () => {
+    
     return (
         <main>
-            <p>Settings WIP</p>
+            <p style={{color: "white", margin: "10px"}}>WIP</p>
         </main>
     )
 }
 
-export default Settings
+const mapStateToProps = (state) => {
+    return {
+        userId: state.users.userId,
+        token: state.users.token
+    }
+}
+
+const mapDispatchToProps = {
+    updateUser: usersAction.updateUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings)

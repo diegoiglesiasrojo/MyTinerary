@@ -79,6 +79,28 @@ const itinerariesAction = {
                 return{success: false, error: err}
             }
         }
-    }
+    },
+    changeLike: (itineraryId, token, likeBoolean, userId) => {
+        return async () => {
+            try {
+                let url = likeBoolean ? "pullLikes" : "pushLikes"
+                let response = await axios.put(
+                    `http://localhost:4000/api/itineraries/${url}/${itineraryId}`, 
+                    {userId},
+                    {headers: {
+                        authorization: 'Bearer ' + token
+                    }}
+                )
+                if (response.data.success) {
+                    return{success: true}
+                } else {
+                    throw new Error("Fail to connect with the database")
+                }
+            } catch (e) {
+                let err = e.message.includes("database") ? e.message : "Fail to connect with the API"
+                return{success: false, error: err}
+            }
+        }
+    },
 }
 export default itinerariesAction
